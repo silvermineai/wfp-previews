@@ -458,7 +458,7 @@
             );
         };
 
-        const DifferentiatorCard = ({ icon: Icon, title, description, delay }) => {
+        const DifferentiatorCard = ({ icon: Icon, title, description, delay, image }) => {
             return React.createElement(
                 motion.div,
                 {
@@ -466,15 +466,24 @@
                     whileInView: { opacity: 1, y: 0 },
                     viewport: { once: true },
                     transition: { duration: 0.5, delay },
-                    className: 'bg-white p-8 border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 group rounded-sm'
+                    className: 'bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 group rounded-sm overflow-hidden flex flex-row'
                 },
                 React.createElement(
                     'div',
-                    { className: 'w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-50 transition-colors' },
-                    React.createElement(Icon, { className: 'text-slate-600 group-hover:text-blue-600 transition-colors', size: 24 })
+                    { className: 'w-1/2 p-6 flex flex-col justify-center' },
+                    React.createElement(
+                        'div',
+                        { className: 'w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-50 transition-colors' },
+                        React.createElement(Icon, { className: 'text-slate-600 group-hover:text-blue-600 transition-colors', size: 20 })
+                    ),
+                    React.createElement('h3', { className: 'text-lg font-serif text-slate-900 mb-2 group-hover:text-blue-700 transition-colors' }, title),
+                    React.createElement('p', { className: 'text-slate-600 text-xs leading-relaxed' }, description)
                 ),
-                React.createElement('h3', { className: 'text-xl font-serif text-slate-900 mb-3 group-hover:text-blue-700 transition-colors' }, title),
-                React.createElement('p', { className: 'text-slate-600 text-sm leading-relaxed' }, description)
+                React.createElement(
+                    'div',
+                    { className: 'w-1/2' },
+                    React.createElement('img', { src: image, alt: title, className: 'w-full h-full object-cover' })
+                )
             );
         };
 
@@ -483,32 +492,38 @@
                 {
                     icon: TrendingUp,
                     title: &quot;Active Tactical Management&quot;,
-                    description: &quot;Our strategies don't sit still. We proactively reposition your portfolio based on market sentiment, constantly adjusting to seize opportunities and mitigate risk.&quot;
+                    description: &quot;Our strategies don't sit still. We proactively reposition your portfolio based on market sentiment, constantly adjusting to seize opportunities and mitigate risk.&quot;,
+                    image: &quot;images/v1-cards/activetactical.png&quot;
                 },
                 {
                     icon: Briefcase,
                     title: &quot;Decades of Experience&quot;,
-                    description: &quot;Leverage a team with deep industry knowledge. We’ve navigated complex market cycles, ensuring your wealth is managed with seasoned wisdom.&quot;
+                    description: &quot;Leverage a team with deep industry knowledge. We've navigated complex market cycles, ensuring your wealth is managed with seasoned wisdom.&quot;,
+                    image: &quot;images/v1-cards/experience.png&quot;
                 },
                 {
                     icon: PieChart,
                     title: &quot;Holistic Planning&quot;,
-                    description: &quot;We handle everything. From retirement and investment management to tax analysis and estate planning, our comprehensive approach leaves no stone unturned.&quot;
+                    description: &quot;We handle everything. From retirement and investment management to tax analysis and estate planning, our comprehensive approach leaves no stone unturned.&quot;,
+                    image: &quot;images/v1-cards/holisticplanning.png&quot;
                 },
                 {
                     icon: BookOpen,
                     title: &quot;Client Education&quot;,
-                    description: &quot;We believe in empowering you. We go beyond management to educate our clients on financial literacy, ensuring you understand the 'why' behind every move.&quot;
+                    description: &quot;We believe in empowering you. We go beyond management to educate our clients on financial literacy, ensuring you understand the 'why' behind every move.&quot;,
+                    image: &quot;images/v1-cards/clienteducation.png&quot;
                 },
                 {
                     icon: Users,
                     title: &quot;Team Collaboration&quot;,
-                    description: &quot;You don't just get an advisor; you get a team. Every client benefits from our collaborative approach, bringing diverse expertise to your financial picture.&quot;
+                    description: &quot;You don't just get an advisor; you get a team. Every client benefits from our collaborative approach, bringing diverse expertise to your financial picture.&quot;,
+                    image: &quot;images/v1-cards/teamcollaboration.png&quot;
                 },
                 {
                     icon: Calendar,
                     title: &quot;Mandatory Quarterly Reviews&quot;,
-                    description: &quot;We are proactive, not reactive. Mandatory reviews ensure we stay aligned with your life changes and market conditions, keeping your plan on track.&quot;
+                    description: &quot;We are proactive, not reactive. Mandatory reviews ensure we stay aligned with your life changes and market conditions, keeping your plan on track.&quot;,
+                    image: &quot;images/v1-cards/quarterlyreviews.png&quot;
                 }
             ];
 
