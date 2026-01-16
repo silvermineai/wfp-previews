@@ -260,10 +260,14 @@
                 <button class="tab-btn" data-tab="nature">
                     Nature Organic <span class="version">V3</span>
                 </button>
+
+                <button class="tab-btn" data-tab="minimal">
+                    Minimal Black <span class="version">V4</span>
+                </button>
             </div>
 
             <div class="branding">
-                <div class="mockup-info">3 Designs</div>
+                <div class="mockup-info">4 Designs</div>
                 <div class="powered-by">
                     Powered by <a href="https://silvermineai.com" target="_blank">Silvermine AI</a>
                 </div>
@@ -1662,6 +1666,430 @@
 </body>
 </html>" title="Nature Organic - Green sage palette with natural elements"></iframe>
         </div>
+
+        <div class="tab-panel" id="panel-minimal">
+            <iframe srcdoc="<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+    <meta charset=&quot;UTF-8&quot;>
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+    <title>Wealth Foundations Partners</title>
+
+    <!-- React &amp; ReactDOM -->
+    <script crossorigin src=&quot;https://unpkg.com/react@18/umd/react.production.min.js&quot;></script>
+    <script crossorigin src=&quot;https://unpkg.com/react-dom@18/umd/react-dom.production.min.js&quot;></script>
+
+    <!-- Babel for JSX -->
+    <script src=&quot;https://unpkg.com/@babel/standalone/babel.min.js&quot;></script>
+
+    <!-- Tailwind CSS -->
+    <script src=&quot;https://cdn.tailwindcss.com&quot;></script>
+
+    <!-- Google Fonts -->
+    <link href=&quot;https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'mustard': '#DCAE1D'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-delay-1 { animation-delay: 3.0s; opacity: 0; }
+        .animate-delay-2 { animation-delay: 3.8s; opacity: 0; }
+        .animate-delay-3 { animation-delay: 4.4s; opacity: 0; }
+        .animate-delay-4 { animation-delay: 5.0s; opacity: 0; }
+
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body>
+    <div id=&quot;root&quot;></div>
+
+    <script type=&quot;text/babel&quot;>
+        const { useState, useEffect } = React;
+
+        // --- Icons Components ---
+        const IconBase = ({ children, size = 24, className = &quot;&quot; }) => (
+            <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width={size} height={size} viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; strokeWidth=&quot;2&quot; strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; className={className}>
+                {children}
+            </svg>
+        );
+
+        const Menu = (props) => <IconBase {...props}><line x1=&quot;4&quot; x2=&quot;20&quot; y1=&quot;12&quot; y2=&quot;12&quot;/><line x1=&quot;4&quot; x2=&quot;20&quot; y1=&quot;6&quot; y2=&quot;6&quot;/><line x1=&quot;4&quot; x2=&quot;20&quot; y1=&quot;18&quot; y2=&quot;18&quot;/></IconBase>;
+        const X = (props) => <IconBase {...props}><path d=&quot;M18 6 6 18&quot;/><path d=&quot;m6 6 12 12&quot;/></IconBase>;
+        const Shield = (props) => <IconBase {...props}><path d=&quot;M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z&quot;/></IconBase>;
+        const TrendingUp = (props) => <IconBase {...props}><polyline points=&quot;22 7 13.5 15.5 8.5 10.5 2 17&quot;/><polyline points=&quot;16 7 22 7 22 13&quot;/></IconBase>;
+        const Users = (props) => <IconBase {...props}><path d=&quot;M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2&quot;/><circle cx=&quot;9&quot; cy=&quot;7&quot; r=&quot;4&quot;/><path d=&quot;M22 21v-2a4 4 0 0 0-3-3.87&quot;/><path d=&quot;M16 3.13a4 4 0 0 1 0 7.75&quot;/></IconBase>;
+        const GraduationCap = (props) => <IconBase {...props}><path d=&quot;M22 10v6M2 10l10-5 10 5-10 5z&quot;/><path d=&quot;M6 12v5c3 3 9 3 12 0v-5&quot;/></IconBase>;
+        const Calendar = (props) => <IconBase {...props}><rect width=&quot;18&quot; height=&quot;18&quot; x=&quot;3&quot; y=&quot;4&quot; rx=&quot;2&quot; ry=&quot;2&quot;/><line x1=&quot;16&quot; x2=&quot;16&quot; y1=&quot;2&quot; y2=&quot;6&quot;/><line x1=&quot;8&quot; x2=&quot;8&quot; y1=&quot;2&quot; y2=&quot;6&quot;/><line x1=&quot;3&quot; x2=&quot;21&quot; y1=&quot;10&quot; y2=&quot;10&quot;/></IconBase>;
+        const Briefcase = (props) => <IconBase {...props}><rect width=&quot;20&quot; height=&quot;14&quot; x=&quot;2&quot; y=&quot;7&quot; rx=&quot;2&quot; ry=&quot;2&quot;/><path d=&quot;M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16&quot;/></IconBase>;
+        const ArrowRight = (props) => <IconBase {...props}><path d=&quot;M5 12h14&quot;/><path d=&quot;m12 5 7 7-7 7&quot;/></IconBase>;
+        const Check = (props) => <IconBase {...props}><polyline points=&quot;20 6 9 17 4 12&quot;/></IconBase>;
+
+        // --- Data ---
+        const DIFFERENTIATORS = [
+          { title: &quot;Active Tactical Management&quot;, desc: &quot;Strategies that reposition based on market sentiment, constantly adjusting to protect wealth.&quot;, icon: <TrendingUp size={24} /> },
+          { title: &quot;Holistic Planning&quot;, desc: &quot;Comprehensive handling of retirement, investment, tax analysis, and estate planning.&quot;, icon: <Briefcase size={24} /> },
+          { title: &quot;Experience &amp; Expertise&quot;, desc: &quot;Decades of combined market wisdom guiding your financial future with steady hands.&quot;, icon: <Shield size={24} /> },
+          { title: &quot;Client Education&quot;, desc: &quot;We prioritize financial literacy so you understand the 'why' behind every move.&quot;, icon: <GraduationCap size={24} /> },
+          { title: &quot;Team Approach&quot;, desc: &quot;A collaborative team dedicated to your specific financial milestones.&quot;, icon: <Users size={24} /> },
+          { title: &quot;Quarterly Reviews&quot;, desc: &quot;Proactive engagement every 90 days to ensure your plan evolves with you.&quot;, icon: <Calendar size={24} /> }
+        ];
+
+        // --- Components ---
+        const Navigation = () => {
+          const [isOpen, setIsOpen] = useState(false);
+          const [scrolled, setScrolled] = useState(false);
+
+          useEffect(() => {
+            const handleScroll = () => setScrolled(window.scrollY > 50);
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+          }, []);
+
+          const navLinks = [
+            { name: 'Services', href: '#services' },
+            { name: 'About', href: '#about' },
+            { name: 'Contact', href: '#contact' }
+          ];
+
+          return (
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${scrolled ? 'bg-white py-4 shadow-sm' : 'bg-transparent py-8'}`}>
+              <div className=&quot;container mx-auto px-8 flex justify-between items-center&quot;>
+                <div className={`font-serif text-2xl tracking-wide ${scrolled ? 'text-black' : 'text-white drop-shadow-md'}`}>
+                  WEALTH FOUNDATIONS
+                </div>
+
+                <div className={`hidden md:flex gap-12 text-sm font-light tracking-widest uppercase ${scrolled ? 'text-black' : 'text-white drop-shadow-md'}`}>
+                  {navLinks.map((link) => (
+                    <a key={link.name} href={link.href} className=&quot;hover:text-yellow-600 transition-colors duration-300 relative group&quot;>
+                      {link.name}
+                      <span className=&quot;absolute -bottom-2 left-0 w-0 h-[1px] bg-yellow-600 group-hover:w-full transition-all duration-300&quot;></span>
+                    </a>
+                  ))}
+                </div>
+
+                <button className=&quot;md:hidden text-inherit&quot; onClick={() => setIsOpen(!isOpen)}>
+                  {isOpen ? <X size={24} color={scrolled ? 'black' : 'white'} /> : <Menu size={24} color={scrolled ? 'black' : 'white'} />}
+                </button>
+              </div>
+
+              {isOpen &amp;&amp; (
+                <div className=&quot;fixed inset-0 bg-white z-50 flex flex-col justify-center items-center gap-8 md:hidden&quot;>
+                  <button className=&quot;absolute top-8 right-8&quot; onClick={() => setIsOpen(false)}>
+                    <X size={32} />
+                  </button>
+                  {navLinks.map((link) => (
+                    <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className=&quot;text-black font-serif text-3xl hover:text-yellow-600 transition-colors&quot;>
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </nav>
+          );
+        };
+
+        const Hero = () => {
+          return (
+            <section className=&quot;relative h-screen w-full overflow-hidden flex items-center justify-center&quot;>
+              <div className=&quot;absolute inset-0 w-full h-full z-0 bg-black&quot;>
+                <div className=&quot;relative w-full h-full&quot;>
+                   <div className=&quot;absolute inset-0 z-10 bg-black/30&quot; />
+                   <iframe
+                    src=&quot;https://player.vimeo.com/video/1154518314?background=1&amp;autoplay=1&amp;loop=1&amp;byline=0&amp;title=0&amp;muted=1&quot;
+                    className=&quot;w-full h-full object-cover pointer-events-none&quot;
+                    frameBorder=&quot;0&quot;
+                    allow=&quot;autoplay; fullscreen; picture-in-picture&quot;
+                    title=&quot;Hero Video&quot;
+                    style={{ minWidth: '100%', minHeight: '100%', width: '177.77vh', height: '56.25vw' }}
+                  ></iframe>
+                </div>
+              </div>
+
+              <div className=&quot;relative z-20 container mx-auto px-8 text-center text-white&quot;>
+                <div className=&quot;font-serif text-6xl md:text-8xl tracking-tight mb-8 leading-[1.1] drop-shadow-lg&quot;>
+                  <div className=&quot;animate-fade-in-up animate-delay-1&quot;>
+                    Take Control of
+                  </div>
+                  <div className=&quot;animate-fade-in-up animate-delay-2 italic font-light&quot;>
+                    What's Next
+                  </div>
+                </div>
+
+                <p className=&quot;animate-fade-in-up animate-delay-3 text-lg md:text-xl text-white/90 max-w-xl mx-auto mb-12 font-light tracking-wide drop-shadow-md&quot;>
+                  Proactive wealth management designed for an evolving market.
+                </p>
+
+                <div className=&quot;animate-fade-in-up animate-delay-4 flex flex-col sm:flex-row gap-6 justify-center&quot;>
+                  <a href=&quot;#contact&quot; className=&quot;bg-white text-black px-10 py-4 font-medium tracking-widest uppercase text-sm hover:bg-gray-100 transition-colors rounded-none&quot;>
+                    Get Started
+                  </a>
+                  <a href=&quot;#about&quot; className=&quot;border border-white text-white px-10 py-4 font-medium tracking-widest uppercase text-sm hover:bg-white hover:text-black transition-colors rounded-none backdrop-blur-sm&quot;>
+                    Learn More
+                  </a>
+                </div>
+              </div>
+            </section>
+          );
+        };
+
+        const ServicesSection = () => {
+          const [activeIndex, setActiveIndex] = useState(0);
+
+          return (
+            <section id=&quot;services&quot; className=&quot;py-24 bg-gray-50&quot;>
+              <div className=&quot;container mx-auto px-8&quot;>
+                <div className=&quot;max-w-3xl mb-12&quot;>
+                  <h2 className=&quot;font-serif text-4xl md:text-5xl text-black mb-4&quot;>The Standard of Excellence</h2>
+                  <p className=&quot;text-gray-500 font-light text-lg&quot;>Detailed attention to every facet of your wealth.</p>
+                </div>
+
+                <div className=&quot;flex flex-col md:flex-row gap-12 items-start&quot;>
+                  <div className=&quot;w-full md:w-1/2 space-y-2&quot;>
+                    {DIFFERENTIATORS.map((item, index) => {
+                      const isActive = activeIndex === index;
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => setActiveIndex(index === activeIndex ? null : index)}
+                          className={`cursor-pointer border-b border-gray-200 transition-all duration-300 ${isActive ? 'bg-white shadow-sm -mx-4 px-4 rounded-lg border-transparent py-6' : 'py-6'}`}
+                        >
+                          <div className=&quot;flex items-center justify-between group&quot;>
+                            <h3 className={`font-serif text-xl transition-colors duration-300 ${isActive ? 'text-black' : 'text-gray-400 group-hover:text-black'}`}>
+                              {item.title}
+                            </h3>
+                            <div className={`transition-transform duration-300 ${isActive ? 'rotate-180 text-yellow-600' : 'text-gray-300'}`}>
+                              {isActive ? <Check size={20} /> : <ArrowRight size={16} />}
+                            </div>
+                          </div>
+
+                          {isActive &amp;&amp; (
+                            <div className=&quot;overflow-hidden&quot;>
+                              <div className=&quot;pt-4 text-gray-500 font-light leading-relaxed flex gap-4&quot;>
+                                 <div className=&quot;text-yellow-600 shrink-0 mt-1&quot;>{item.icon}</div>
+                                 <p>{item.desc}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  <div className=&quot;w-full md:w-1/2 sticky top-24&quot;>
+                     <img
+                       src=&quot;https://i.postimg.cc/KYkNqdVF/2.png&quot;
+                       alt=&quot;Architecture&quot;
+                       className=&quot;w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl&quot;
+                     />
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        };
+
+        const AboutSection = () => {
+          return (
+            <section id=&quot;about&quot; className=&quot;py-24 md:py-32 bg-white&quot;>
+              <div className=&quot;container mx-auto px-8&quot;>
+                <div className=&quot;max-w-3xl mx-auto text-center&quot;>
+                  <h2 className=&quot;font-serif text-4xl md:text-5xl text-black mb-8 leading-tight&quot;>
+                    A Team Approach to <br/>Your Legacy
+                  </h2>
+                  <div className=&quot;h-[1px] w-24 bg-gray-200 mb-8 mx-auto&quot;></div>
+                  <p className=&quot;text-gray-600 leading-relaxed mb-6 font-light text-lg&quot;>
+                    We don't believe in the solitary advisor model. At Wealth Foundations Partners, you gain access to a collaborative team dedicated to understanding the nuances of your financial life.
+                  </p>
+                  <p className=&quot;text-gray-600 leading-relaxed font-light mb-10 text-lg&quot;>
+                    Our mandatory quarterly reviews ensure we are proactive, not reactive. We educate, we plan, and we execute with precision, ensuring you are always in control of your financial narrative.
+                  </p>
+                  <a href=&quot;#services&quot; className=&quot;inline-flex items-center gap-2 text-black border-b border-black pb-1 hover:text-yellow-600 hover:border-yellow-600 transition-all uppercase text-xs tracking-widest font-semibold&quot;>
+                    Explore Our Services <ArrowRight size={14} />
+                  </a>
+                </div>
+              </div>
+            </section>
+          );
+        };
+
+        const CustodiansSection = () => {
+          return (
+            <section className=&quot;relative py-32 bg-black text-white overflow-hidden&quot;>
+              <div className=&quot;container mx-auto px-8 relative z-10&quot;>
+                <div className=&quot;flex flex-col md:flex-row justify-between items-center gap-16&quot;>
+
+                  <div className=&quot;md:w-1/2&quot;>
+                    <span className=&quot;text-yellow-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block&quot;>Security</span>
+                    <h2 className=&quot;font-serif text-4xl md:text-6xl mb-8 leading-none&quot;>
+                      Institutional <br/> Strength.
+                    </h2>
+                    <p className=&quot;text-gray-400 text-lg font-light leading-relaxed max-w-md&quot;>
+                      Your assets deserve the highest level of security. We partner with the world's largest brokerage firms to provide you with independent custody, institutional execution, and robust protection.
+                    </p>
+                  </div>
+
+                  <div className=&quot;md:w-1/2 w-full flex flex-col gap-6&quot;>
+                    <div className=&quot;group border border-white/20 p-8 hover:border-yellow-600 transition-colors duration-500 cursor-default bg-transparent&quot;>
+                      <h3 className=&quot;font-serif text-3xl md:text-4xl text-white group-hover:text-yellow-600 transition-colors duration-500 text-center&quot;>
+                        Charles Schwab
+                      </h3>
+                    </div>
+                    <div className=&quot;group border border-white/20 p-8 hover:border-yellow-600 transition-colors duration-500 cursor-default bg-transparent&quot;>
+                      <h3 className=&quot;font-serif text-3xl md:text-4xl text-white group-hover:text-yellow-600 transition-colors duration-500 text-center&quot;>
+                        Fidelity Investments
+                      </h3>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          );
+        };
+
+        const CTASection = () => {
+          return (
+            <section id=&quot;contact&quot; className=&quot;py-32 bg-white relative&quot;>
+              <div className=&quot;container mx-auto px-8&quot;>
+                <div className=&quot;grid lg:grid-cols-2 gap-0 border border-gray-100 shadow-2xl bg-white&quot;>
+
+                  <div className=&quot;relative bg-gray-50 p-12 flex flex-col justify-center items-center&quot;>
+                    <div className=&quot;relative w-full max-w-md aspect-[4/5]&quot;>
+                       <img
+                        src=&quot;https://i.postimg.cc/0NMfWL3P/3.png&quot;
+                        alt=&quot;Interior&quot;
+                        className=&quot;w-full h-full object-contain shadow-lg grayscale hover:grayscale-0 transition-all duration-700&quot;
+                      />
+                    </div>
+                    <div className=&quot;mt-8 text-center&quot;>
+                      <blockquote className=&quot;text-black font-serif text-xl md:text-2xl leading-relaxed mb-4&quot;>
+                        &quot;We handle everything so you don't have to.&quot;
+                      </blockquote>
+                      <div className=&quot;w-8 h-1 bg-yellow-600 mx-auto&quot;></div>
+                    </div>
+                  </div>
+
+                  <div className=&quot;bg-white p-12 lg:p-20 flex flex-col justify-center&quot;>
+                    <h2 className=&quot;font-serif text-4xl text-black mb-12&quot;>Begin the Conversation</h2>
+
+                    <div className=&quot;space-y-12&quot;>
+                      <div className=&quot;group&quot;>
+                        <h3 className=&quot;text-lg font-bold uppercase tracking-widest mb-4 flex items-center gap-3&quot;>
+                          <span className=&quot;w-2 h-2 bg-yellow-600 rounded-none&quot;></span>
+                          Introductory Meeting
+                        </h3>
+                        <p className=&quot;text-gray-500 font-light mb-6&quot;>
+                          Explore our active tactical management strategies with no obligation.
+                        </p>
+                        <button className=&quot;px-8 py-4 border border-black text-black text-sm tracking-widest uppercase hover:bg-black hover:text-white transition-all duration-300 w-full sm:w-auto&quot;>
+                          Schedule Now
+                        </button>
+                      </div>
+
+                      <div className=&quot;w-full h-px bg-gray-100&quot;></div>
+
+                      <div className=&quot;group&quot;>
+                        <h3 className=&quot;text-lg font-bold uppercase tracking-widest mb-4 flex items-center gap-3&quot;>
+                          <span className=&quot;w-2 h-2 bg-black rounded-none&quot;></span>
+                          Comprehensive Plan
+                        </h3>
+                        <p className=&quot;text-gray-500 font-light mb-6&quot;>
+                          Ready for a deep dive? Receive a full annual financial roadmap at no cost.
+                        </p>
+                        <button className=&quot;px-8 py-4 bg-black text-white text-sm tracking-widest uppercase hover:bg-yellow-600 hover:border-yellow-600 border border-black transition-all duration-300 w-full sm:w-auto&quot;>
+                          Start Your Plan
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          );
+        };
+
+        const Footer = () => {
+          return (
+            <footer className=&quot;bg-white text-black py-20 border-t border-gray-100&quot;>
+              <div className=&quot;container mx-auto px-8&quot;>
+                <div className=&quot;flex flex-col md:flex-row justify-between items-start gap-12&quot;>
+                  <div className=&quot;max-w-md&quot;>
+                    <h4 className=&quot;font-serif text-2xl mb-6&quot;>WEALTH FOUNDATIONS PARTNERS</h4>
+                    <p className=&quot;text-gray-500 font-light leading-relaxed text-sm&quot;>
+                      Navigating complex markets with active strategies and holistic planning.
+                    </p>
+                  </div>
+
+                  <div className=&quot;flex gap-16 text-sm&quot;>
+                    <div className=&quot;flex flex-col gap-4&quot;>
+                      <span className=&quot;font-bold uppercase tracking-widest text-xs mb-2&quot;>Menu</span>
+                      <a href=&quot;#about&quot; className=&quot;text-gray-600 hover:text-black transition-colors&quot;>About</a>
+                      <a href=&quot;#services&quot; className=&quot;text-gray-600 hover:text-black transition-colors&quot;>Services</a>
+                      <a href=&quot;#contact&quot; className=&quot;text-gray-600 hover:text-black transition-colors&quot;>Contact</a>
+                    </div>
+                    <div className=&quot;flex flex-col gap-4&quot;>
+                      <span className=&quot;font-bold uppercase tracking-widest text-xs mb-2&quot;>Legal</span>
+                      <a href=&quot;#&quot; className=&quot;text-gray-600 hover:text-black transition-colors&quot;>Privacy</a>
+                      <a href=&quot;#&quot; className=&quot;text-gray-600 hover:text-black transition-colors&quot;>Disclosures</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className=&quot;mt-20 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 uppercase tracking-wider&quot;>
+                  <p>&amp;copy; {new Date().getFullYear()} Wealth Foundations Partners.</p>
+                  <div className=&quot;flex gap-6 mt-4 md:mt-0&quot;>
+                     <span>LinkedIn</span>
+                     <span>Facebook</span>
+                  </div>
+                </div>
+              </div>
+            </footer>
+          );
+        };
+
+        const App = () => {
+          return (
+            <div className=&quot;bg-white min-h-screen font-sans text-black selection:bg-gray-200 selection:text-black&quot;>
+              <Navigation />
+              <Hero />
+              <ServicesSection />
+              <AboutSection />
+              <CustodiansSection />
+              <CTASection />
+              <Footer />
+            </div>
+          );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>" title="Minimal Black - Clean black and white with mustard accents"></iframe>
+        </div>
     </main>
 
     <script>
@@ -1681,10 +2109,10 @@
             });
         });
 
-        // Keyboard navigation (1-3 for quick switching)
+        // Keyboard navigation (1-4 for quick switching)
         document.addEventListener('keydown', (e) => {
             const num = parseInt(e.key);
-            if (num >= 1 && num <= 3) {
+            if (num >= 1 && num <= 4) {
                 const buttons = document.querySelectorAll('.tab-btn');
                 if (buttons[num - 1]) {
                     buttons[num - 1].click();
