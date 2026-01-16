@@ -169,12 +169,16 @@
             }
 
             .tabs {
+                display: flex;
                 width: 100%;
                 overflow-x: auto;
                 padding-bottom: 4px;
+                padding-right: 20px;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
                 -ms-overflow-style: none;
+                gap: 6px;
+                justify-content: flex-start;
             }
 
             .tabs::-webkit-scrollbar {
@@ -182,8 +186,8 @@
             }
 
             .tab-btn {
-                padding: 8px 14px;
-                font-size: 11px;
+                padding: 8px 12px;
+                font-size: 10px;
                 white-space: nowrap;
                 flex-shrink: 0;
             }
@@ -1037,7 +1041,7 @@
                     <iframe
                         src=&quot;https://player.vimeo.com/video/1154518314?background=1&amp;autoplay=1&amp;loop=1&amp;byline=0&amp;title=0&amp;muted=1&quot;
                         className=&quot;absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover pointer-events-none grayscale-[30%] opacity-70&quot;
-                        style=&quot;width: max(100%, 177.78vh); height: max(100%, 56.25vw);&quot;
+                        style={{ width: 'max(100%, 177.78vh)', height: 'max(100%, 56.25vw)' }}
                         frameBorder=&quot;0&quot;
                         allow=&quot;autoplay; fullscreen; picture-in-picture&quot;
                         title=&quot;Hero Video&quot;
@@ -1414,7 +1418,7 @@
                   <iframe
                     src=&quot;https://player.vimeo.com/video/1154518314?background=1&amp;autoplay=1&amp;loop=1&amp;byline=0&amp;title=0&amp;muted=1&quot;
                     className=&quot;absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover pointer-events-none&quot;
-                    style=&quot;width: max(100%, 177.78vh); height: max(100%, 56.25vw);&quot;
+                    style={{ width: 'max(100%, 177.78vh)', height: 'max(100%, 56.25vw)' }}
                     allow=&quot;autoplay; fullscreen; picture-in-picture&quot;
                     title=&quot;Hero Video&quot;
                   ></iframe>
