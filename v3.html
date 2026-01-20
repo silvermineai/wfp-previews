@@ -100,20 +100,32 @@
           }, []);
 
           useEffect(() => {
-            if (videoRef.current) {
-              const player = new Vimeo.Player(videoRef.current);
-              let duration = 0;
+            // Fallback timer in case Vimeo API doesn't load (e.g., in Markup editor)
+            const fallbackTimer = setTimeout(() => {
+              setVideoEnded(true);
+            }, 12000); // 12 seconds fallback
 
-              player.getDuration().then(d => {
-                duration = d;
-              });
+            try {
+              if (videoRef.current && typeof Vimeo !== 'undefined') {
+                const player = new Vimeo.Player(videoRef.current);
+                let duration = 0;
 
-              player.on('timeupdate', (data) => {
-                if (duration > 0 && data.seconds >= duration - 0.5) {
-                  setVideoEnded(true);
-                }
-              });
+                player.getDuration().then(d => {
+                  duration = d;
+                });
+
+                player.on('timeupdate', (data) => {
+                  if (duration > 0 && data.seconds >= duration - 0.5) {
+                    clearTimeout(fallbackTimer);
+                    setVideoEnded(true);
+                  }
+                });
+              }
+            } catch (e) {
+              // Vimeo API not available, fallback timer will handle it
             }
+
+            return () => clearTimeout(fallbackTimer);
           }, []);
 
           const scrollToSection = (id) => {
