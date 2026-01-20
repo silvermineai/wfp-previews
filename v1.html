@@ -30,9 +30,6 @@
         }
     </script>
 
-    <!-- Vimeo Player API -->
-    <script src="https://player.vimeo.com/api/player.js"></script>
-
     <!-- Import Map for React modules -->
     <script type="importmap">
     {
@@ -137,36 +134,14 @@
 
         const Hero = () => {
             const [videoEnded, setVideoEnded] = useState(false);
-            const iframeRef = React.useRef(null);
+            const videoRef = React.useRef(null);
 
             useEffect(() => {
-                // Fallback timer in case Vimeo API doesn't load (e.g., in Markup editor)
-                const fallbackTimer = setTimeout(() => {
-                    setVideoEnded(true);
-                }, 12000); // 12 seconds fallback
-
-                try {
-                    if (iframeRef.current && typeof Vimeo !== 'undefined') {
-                        const player = new Vimeo.Player(iframeRef.current);
-                        let duration = 0;
-
-                        player.getDuration().then(d => {
-                            duration = d;
-                        });
-
-                        player.on('timeupdate', (data) => {
-                            // Trigger fade when video reaches last 0.5 seconds
-                            if (duration > 0 && data.seconds >= duration - 0.5) {
-                                clearTimeout(fallbackTimer);
-                                setVideoEnded(true);
-                            }
-                        });
-                    }
-                } catch (e) {
-                    // Vimeo API not available, fallback timer will handle it
+                if (videoRef.current) {
+                    videoRef.current.addEventListener('ended', () => {
+                        setVideoEnded(true);
+                    });
                 }
-
-                return () => clearTimeout(fallbackTimer);
             }, []);
 
             return React.createElement(
@@ -183,15 +158,14 @@
                         className: `absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoEnded ? 'opacity-100' : 'opacity-0'}`,
                         style: { zIndex: 5 }
                     }),
-                    React.createElement('iframe', {
-                        ref: iframeRef,
-                        src: 'https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=0&byline=0&title=0&muted=1',
+                    React.createElement('video', {
+                        ref: videoRef,
+                        src: 'videos/MWF Header.mp4',
                         className: `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover pointer-events-none transition-opacity duration-1000 ${videoEnded ? 'opacity-0' : 'opacity-100'}`,
                         style: { width: 'max(100%, 177.78vh)', height: 'max(100%, 56.25vw)' },
-                        frameBorder: '0',
-                        allow: 'autoplay; fullscreen; picture-in-picture',
-                        allowFullScreen: true,
-                        title: 'Wealth Foundations Header Video'
+                        autoPlay: true,
+                        muted: true,
+                        playsInline: true
                     })
                 ),
                 React.createElement(
