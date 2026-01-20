@@ -150,8 +150,16 @@
           useEffect(() => {
             if (videoRef.current) {
               const player = new Vimeo.Player(videoRef.current);
-              player.on('ended', () => {
-                setVideoEnded(true);
+              let duration = 0;
+
+              player.getDuration().then(d => {
+                duration = d;
+              });
+
+              player.on('timeupdate', (data) => {
+                if (duration > 0 && data.seconds >= duration - 0.5) {
+                  setVideoEnded(true);
+                }
               });
             }
           }, []);

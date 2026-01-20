@@ -142,8 +142,17 @@
             useEffect(() => {
                 if (iframeRef.current) {
                     const player = new Vimeo.Player(iframeRef.current);
-                    player.on('ended', () => {
-                        setVideoEnded(true);
+                    let duration = 0;
+
+                    player.getDuration().then(d => {
+                        duration = d;
+                    });
+
+                    player.on('timeupdate', (data) => {
+                        // Trigger fade when video reaches last 0.5 seconds
+                        if (duration > 0 && data.seconds >= duration - 0.5) {
+                            setVideoEnded(true);
+                        }
                     });
                 }
             }, []);
