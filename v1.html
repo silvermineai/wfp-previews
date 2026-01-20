@@ -30,6 +30,9 @@
         }
     </script>
 
+    <!-- Vimeo Player API -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
     <!-- Import Map for React modules -->
     <script type="importmap">
     {
@@ -133,6 +136,18 @@
         };
 
         const Hero = () => {
+            const [videoEnded, setVideoEnded] = useState(false);
+            const iframeRef = React.useRef(null);
+
+            useEffect(() => {
+                if (iframeRef.current) {
+                    const player = new Vimeo.Player(iframeRef.current);
+                    player.on('ended', () => {
+                        setVideoEnded(true);
+                    });
+                }
+            }, []);
+
             return React.createElement(
                 'div',
                 { className: 'relative h-screen w-full overflow-hidden flex items-center justify-center bg-slate-900' },
@@ -140,9 +155,17 @@
                     'div',
                     { className: 'absolute inset-0 w-full h-full z-0' },
                     React.createElement('div', { className: 'absolute inset-0 bg-slate-900/60 z-10' }),
+                    // Fallback image that fades in when video ends
+                    React.createElement('img', {
+                        src: 'images/headers/hero-fallback.jpg',
+                        alt: 'Wealth Foundations',
+                        className: `absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoEnded ? 'opacity-100' : 'opacity-0'}`,
+                        style: { zIndex: 5 }
+                    }),
                     React.createElement('iframe', {
-                        src: 'https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1',
-                        className: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover pointer-events-none',
+                        ref: iframeRef,
+                        src: 'https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=0&byline=0&title=0&muted=1',
+                        className: `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover pointer-events-none transition-opacity duration-1000 ${videoEnded ? 'opacity-0' : 'opacity-100'}`,
                         style: { width: 'max(100%, 177.78vh)', height: 'max(100%, 56.25vw)' },
                         frameBorder: '0',
                         allow: 'autoplay; fullscreen; picture-in-picture',

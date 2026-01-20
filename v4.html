@@ -12,6 +12,9 @@
     <!-- Babel for JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <!-- Vimeo Player API -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -141,13 +144,33 @@
         };
 
         const Hero = () => {
+          const [videoEnded, setVideoEnded] = useState(false);
+          const videoRef = React.useRef(null);
+
+          useEffect(() => {
+            if (videoRef.current) {
+              const player = new Vimeo.Player(videoRef.current);
+              player.on('ended', () => {
+                setVideoEnded(true);
+              });
+            }
+          }, []);
+
           return (
             <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
               <div className="absolute inset-0 w-full h-full z-0 bg-black overflow-hidden">
                 <div className="absolute inset-0 z-10 bg-black/30" />
+                {/* Fallback image that fades in when video ends */}
+                <img
+                  src="images/headers/hero-fallback.jpg"
+                  alt="Wealth Foundations"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoEnded ? 'opacity-100' : 'opacity-0'}`}
+                  style={{ zIndex: 5 }}
+                />
                 <iframe
-                  src="https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover pointer-events-none"
+                  ref={videoRef}
+                  src="https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=0&byline=0&title=0&muted=1"
+                  className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover pointer-events-none transition-opacity duration-1000 ${videoEnded ? 'opacity-0' : 'opacity-100'}`}
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture"
                   title="Hero Video"

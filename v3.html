@@ -12,6 +12,9 @@
     <!-- Babel for JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
+    <!-- Vimeo Player API -->
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -85,6 +88,8 @@
         const App = () => {
           const [isMenuOpen, setIsMenuOpen] = useState(false);
           const [scrolled, setScrolled] = useState(false);
+          const [videoEnded, setVideoEnded] = useState(false);
+          const videoRef = React.useRef(null);
 
           useEffect(() => {
             const handleScroll = () => {
@@ -92,6 +97,15 @@
             };
             window.addEventListener('scroll', handleScroll);
             return () => window.removeEventListener('scroll', handleScroll);
+          }, []);
+
+          useEffect(() => {
+            if (videoRef.current) {
+              const player = new Vimeo.Player(videoRef.current);
+              player.on('ended', () => {
+                setVideoEnded(true);
+              });
+            }
           }, []);
 
           const scrollToSection = (id) => {
@@ -168,16 +182,24 @@
               <header className="relative h-screen w-full flex items-center justify-center overflow-hidden">
                 {/* Video Background Container */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden z-0 bg-cream">
+                  {/* Fallback image that fades in when video ends */}
+                  <img
+                    src="images/headers/hero-fallback.jpg"
+                    alt="Wealth Foundations"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoEnded ? 'opacity-100' : 'opacity-0'}`}
+                    style={{ zIndex: 5 }}
+                  />
                   <iframe
-                    src="https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover pointer-events-none"
+                    ref={videoRef}
+                    src="https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=0&byline=0&title=0&muted=1"
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover pointer-events-none transition-opacity duration-1000 ${videoEnded ? 'opacity-0' : 'opacity-100'}`}
                     style={{ width: 'max(100%, 177.78vh)', height: 'max(100%, 56.25vw)' }}
                     allow="autoplay; fullscreen; picture-in-picture"
                     title="Hero Video"
                   ></iframe>
 
                   {/* White/Off-White Gradient Overlay - Subtle fade to section below */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cream/80 mix-blend-normal"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-cream/80 mix-blend-normal" style={{ zIndex: 6 }}></div>
                 </div>
 
                 {/* Hero Content */}
