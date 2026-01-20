@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wealth Foundations Partners</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        slate: {
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Import Map for React modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react",
+            "framer-motion": "https://esm.sh/framer-motion@10.12.16?external=react,react-dom"
+        }
+    }
+    </script>
+</head>
+<body class="bg-white text-slate-900 antialiased selection:bg-blue-100">
+    <div id="root"></div>
+
+    <!-- Application Code -->
+    <script type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import {
+            ShieldCheck,
+            TrendingUp,
+            Users,
+            BookOpen,
+            Calendar,
+            Briefcase,
+            ArrowRight,
+            Menu,
+            X,
+            ChevronRight,
+            PieChart
+        } from 'lucide-react';
+        import { motion, AnimatePresence } from 'framer-motion';
+
+        const Navbar = () => {
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return React.createElement(
+                'nav',
+                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-4' : 'bg-transparent py-6'}` },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6 flex justify-between items-center' },
+                    React.createElement(
+                        'div',
+                        { className: 'text-white font-serif text-2xl tracking-wide font-semibold' },
+                        'WEALTH ',
+                        React.createElement('span', { className: 'text-blue-400' }, 'FOUNDATIONS'),
+                        ' PARTNERS'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'hidden md:flex items-center space-x-8' },
+                        React.createElement('a', { href: '#services', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Services'),
+                        React.createElement('a', { href: '#about', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'About'),
+                        React.createElement(
+                            'button',
+                            {
+                                onClick: () => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }),
+                                className: 'px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium tracking-wide rounded-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-blue-900/20'
+                            },
+                            'Schedule Meeting'
+                        )
+                    ),
+                    React.createElement(
+                        'button',
+                        { className: 'md:hidden text-white', onClick: () => setMobileMenuOpen(!mobileMenuOpen) },
+                        mobileMenuOpen ? React.createElement(X, { size: 28 }) : React.createElement(Menu, { size: 28 })
+                    )
+                ),
+                React.createElement(
+                    AnimatePresence,
+                    null,
+                    mobileMenuOpen && React.createElement(
+                        motion.div,
+                        {
+                            initial: { opacity: 0, height: 0 },
+                            animate: { opacity: 1, height: 'auto' },
+                            exit: { opacity: 0, height: 0 },
+                            className: 'md:hidden bg-slate-900 border-t border-slate-800'
+                        },
+                        React.createElement(
+                            'div',
+                            { className: 'flex flex-col p-6 space-y-4' },
+                            React.createElement('a', { href: '#services', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'Services'),
+                            React.createElement('a', { href: '#about', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'About'),
+                            React.createElement('a', { href: '#contact', onClick: () => setMobileMenuOpen(false), className: 'text-blue-400 font-semibold' }, 'Schedule Meeting')
+                        )
+                    )
+                )
+            );
+        };
+
+        const Hero = () => {
+            return React.createElement(
+                'div',
+                { className: 'relative h-screen w-full overflow-hidden flex items-center justify-center bg-slate-900' },
+                React.createElement(
+                    'div',
+                    { className: 'absolute inset-0 w-full h-full z-0' },
+                    React.createElement('div', { className: 'absolute inset-0 bg-slate-900/60 z-10' }),
+                    React.createElement('iframe', {
+                        src: 'https://player.vimeo.com/video/1154518314?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1',
+                        className: 'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover pointer-events-none',
+                        style: { width: 'max(100%, 177.78vh)', height: 'max(100%, 56.25vw)' },
+                        frameBorder: '0',
+                        allow: 'autoplay; fullscreen; picture-in-picture',
+                        allowFullScreen: true,
+                        title: 'Wealth Foundations Header Video'
+                    })
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'relative z-20 container mx-auto px-6 text-center' },
+                    React.createElement(
+                        'h1',
+                        { className: 'text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-12 leading-tight' },
+                        React.createElement(
+                            motion.span,
+                            {
+                                initial: { opacity: 0, y: 30 },
+                                animate: { opacity: 1, y: 0 },
+                                transition: { duration: 1.2, delay: 2.5, ease: 'easeOut' },
+                                className: 'block'
+                            },
+                            'Build Your Tomorrow,'
+                        ),
+                        React.createElement(
+                            motion.span,
+                            {
+                                initial: { opacity: 0, scale: 0.5, y: 20 },
+                                animate: { opacity: 1, scale: 1, y: 0 },
+                                transition: { duration: 0.8, delay: 4, ease: [0.34, 1.56, 0.64, 1] },
+                                className: 'block text-white italic mt-2'
+                            },
+                            'Today'
+                        )
+                    ),
+                    React.createElement(
+                        motion.div,
+                        {
+                            initial: { opacity: 0, y: 20 },
+                            animate: { opacity: 1, y: 0 },
+                            transition: { duration: 0.6, delay: 5 },
+                            className: 'flex flex-col sm:flex-row justify-center items-center gap-4'
+                        },
+                        React.createElement(
+                            'button',
+                            {
+                                onClick: () => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }),
+                                className: 'w-full sm:w-auto px-8 py-4 border border-white hover:bg-white/10 text-white font-medium rounded-sm transition-all backdrop-blur-sm flex items-center justify-center gap-2 group'
+                            },
+                            'Get Your Free Financial Plan',
+                            React.createElement(ArrowRight, { className: 'w-4 h-4 group-hover:translate-x-1 transition-transform' })
+                        )
+                    )
+                )
+            );
+        };
+
+        const DifferentiatorCard = ({ icon: Icon, title, description, delay, image }) => {
+            return React.createElement(
+                motion.div,
+                {
+                    initial: { opacity: 0, y: 20 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true },
+                    transition: { duration: 0.5, delay },
+                    className: 'bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:border-blue-200 transition-all duration-300 group rounded-sm overflow-hidden flex flex-row'
+                },
+                React.createElement(
+                    'div',
+                    { className: 'w-1/2 p-6 flex flex-col justify-center' },
+                    React.createElement(
+                        'div',
+                        { className: 'w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-50 transition-colors' },
+                        React.createElement(Icon, { className: 'text-slate-600 group-hover:text-blue-600 transition-colors', size: 20 })
+                    ),
+                    React.createElement('h3', { className: 'text-lg font-serif text-slate-900 mb-2 group-hover:text-blue-700 transition-colors' }, title),
+                    React.createElement('p', { className: 'text-slate-600 text-xs leading-relaxed' }, description)
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'w-1/2' },
+                    React.createElement('img', { src: image, alt: title, className: 'w-full h-full object-cover' })
+                )
+            );
+        };
+
+        const Differentiators = () => {
+            const items = [
+                {
+                    icon: TrendingUp,
+                    title: "Active Tactical Management",
+                    description: "Our strategies don't sit still. We proactively reposition your portfolio based on market sentiment, constantly adjusting to seize opportunities and mitigate risk.",
+                    image: "images/v1-cards/activetactical.png"
+                },
+                {
+                    icon: Briefcase,
+                    title: "Decades of Experience",
+                    description: "Leverage a team with deep industry knowledge. We've navigated complex market cycles, ensuring your wealth is managed with seasoned wisdom.",
+                    image: "images/v1-cards/experience.png"
+                },
+                {
+                    icon: PieChart,
+                    title: "Holistic Planning",
+                    description: "We handle everything. From retirement and investment management to tax analysis and estate planning, our comprehensive approach leaves no stone unturned.",
+                    image: "images/v1-cards/holisticplanning.png"
+                },
+                {
+                    icon: BookOpen,
+                    title: "Client Education",
+                    description: "We believe in empowering you. We go beyond management to educate our clients on financial literacy, ensuring you understand the 'why' behind every move.",
+                    image: "images/v1-cards/clienteducation.png"
+                },
+                {
+                    icon: Users,
+                    title: "Team Collaboration",
+                    description: "You don't just get an advisor; you get a team. Every client benefits from our collaborative approach, bringing diverse expertise to your financial picture.",
+                    image: "images/v1-cards/teamcollaboration.png"
+                },
+                {
+                    icon: Calendar,
+                    title: "Mandatory Quarterly Reviews",
+                    description: "We are proactive, not reactive. Mandatory reviews ensure we stay aligned with your life changes and market conditions, keeping your plan on track.",
+                    image: "images/v1-cards/quarterlyreviews.png"
+                }
+            ];
+
+            return React.createElement(
+                'section',
+                { id: 'services', className: 'py-24 bg-slate-50' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'text-center max-w-3xl mx-auto mb-16' },
+                        React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'Wealth Foundations Partners have higher standards'),
+                        React.createElement('h2', { className: 'text-3xl md:text-5xl font-serif text-slate-900 mt-3 mb-6' }, 'Six Cornerstones You Won\'t Find Anywhere Else'),
+                        React.createElement('p', { className: 'text-slate-600' }, 'We move beyond the traditional "buy and hold" mentality to provide a dynamic, service-first experience.')
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' },
+                        items.map((item, index) => React.createElement(DifferentiatorCard, { key: index, ...item, delay: index * 0.1 }))
+                    )
+                )
+            );
+        };
+
+        const Custodians = () => {
+            return React.createElement(
+                'section',
+                { id: 'about', className: 'py-20 bg-white' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'bg-slate-900 rounded-2xl p-10 md:p-16 relative overflow-hidden' },
+                        React.createElement('div', { className: 'absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -mr-16 -mt-16' }),
+                        React.createElement(
+                            'div',
+                            { className: 'relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12' },
+                            React.createElement(
+                                'div',
+                                { className: 'lg:w-1/2 flex flex-col justify-center' },
+                                React.createElement('h2', { className: 'text-3xl font-serif text-white mb-6' }, 'Safeguarded by the World\'s Largest Brokerages'),
+                                React.createElement(
+                                    'p',
+                                    { className: 'text-slate-300 text-lg leading-relaxed mb-6' },
+                                    'Security is paramount. When you hire Wealth Foundations Partners, your assets are held by ',
+                                    React.createElement('span', { className: 'text-white font-semibold' }, 'Charles Schwab'),
+                                    ' and ',
+                                    React.createElement('span', { className: 'text-white font-semibold' }, 'Fidelity'),
+                                    '—two of the largest and most trusted custodians in the world.'
+                                ),
+                                React.createElement(
+                                    'div',
+                                    { className: 'flex items-center justify-center lg:justify-start gap-4 text-blue-400 font-medium w-full' },
+                                    React.createElement(ShieldCheck, { size: 20 }),
+                                    React.createElement('span', null, 'Institutional-Grade Security')
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'lg:w-1/2 flex flex-col sm:flex-row items-center justify-center gap-8 lg:gap-12 opacity-90' },
+                                React.createElement('div', { className: 'text-2xl md:text-3xl font-bold text-white tracking-tight' }, 'Charles Schwab'),
+                                React.createElement('div', { className: 'hidden sm:block w-px h-12 bg-slate-700' }),
+                                React.createElement('div', { className: 'text-2xl md:text-3xl font-bold text-white tracking-tight font-serif italic' }, 'Fidelity')
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const Actions = () => {
+            return React.createElement(
+                'section',
+                { id: 'contact', className: 'py-24 bg-slate-50' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'text-center mb-16' },
+                        React.createElement('h2', { className: 'text-3xl md:text-5xl font-serif text-slate-900 mb-6' }, 'Start Your Journey'),
+                        React.createElement('p', { className: 'text-slate-600 max-w-2xl mx-auto' }, 'Whether you are ready for a comprehensive deep dive or just want to learn more about our tactical approach, we have a path for you.')
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'grid md:grid-cols-2 gap-8 max-w-5xl mx-auto' },
+                        React.createElement(
+                            motion.div,
+                            {
+                                whileHover: { y: -5 },
+                                className: 'bg-white p-10 rounded-sm shadow-sm border-t-4 border-slate-300 flex flex-col justify-between'
+                            },
+                            React.createElement(
+                                'div',
+                                null,
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-slate-100 w-12 h-12 rounded-full flex items-center justify-center mb-6' },
+                                    React.createElement(Users, { className: 'text-slate-600', size: 24 })
+                                ),
+                                React.createElement('h3', { className: 'text-2xl font-serif text-slate-900 mb-3' }, 'Introductory Meeting'),
+                                React.createElement('p', { className: 'text-slate-600 mb-6 leading-relaxed' }, 'Curious about Active Tactical Management? Schedule a no-obligation introduction. We\'ll show you why our approach works so well and how we protect capital in volatile markets.'),
+                                React.createElement(
+                                    'ul',
+                                    { className: 'space-y-3 mb-8' },
+                                    React.createElement(
+                                        'li',
+                                        { className: 'flex items-center gap-3 text-sm text-slate-700' },
+                                        React.createElement(ChevronRight, { size: 16, className: 'text-blue-500' }),
+                                        'Introduction to Advisory Services'
+                                    ),
+                                    React.createElement(
+                                        'li',
+                                        { className: 'flex items-center gap-3 text-sm text-slate-700' },
+                                        React.createElement(ChevronRight, { size: 16, className: 'text-blue-500' }),
+                                        'Educational & Informative'
+                                    ),
+                                    React.createElement(
+                                        'li',
+                                        { className: 'flex items-center gap-3 text-sm text-slate-700' },
+                                        React.createElement(ChevronRight, { size: 16, className: 'text-blue-500' }),
+                                        'No Pressure, Just Value'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'button',
+                                { className: 'w-full py-4 border-2 border-slate-900 text-slate-900 font-semibold hover:bg-slate-900 hover:text-white transition-colors duration-300' },
+                                'Schedule A Meeting'
+                            )
+                        ),
+                        React.createElement(
+                            motion.div,
+                            {
+                                whileHover: { y: -5 },
+                                className: 'bg-slate-900 p-10 rounded-sm shadow-xl border-t-4 border-blue-500 flex flex-col justify-between relative overflow-hidden'
+                            },
+                            React.createElement(
+                                'div',
+                                null,
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-blue-600 w-12 h-12 rounded-full flex items-center justify-center mb-6' },
+                                    React.createElement(TrendingUp, { className: 'text-white', size: 24 })
+                                ),
+                                React.createElement('h3', { className: 'text-2xl font-serif text-white mb-3' }, 'Get Your Free Financial Plan'),
+                                React.createElement('p', { className: 'text-slate-300 mb-6 leading-relaxed' }, 'Ready to get serious? We offer a comprehensive financial plan at no cost. This is a deep dive where we analyze your data to provide actionable, risk-based performance insights.'),
+                                React.createElement(
+                                    'ul',
+                                    { className: 'space-y-3 mb-8' },
+                                    React.createElement(
+                                        'li',
+                                        { className: 'flex items-center gap-3 text-sm text-slate-300' },
+                                        React.createElement(ChevronRight, { size: 16, className: 'text-blue-500' }),
+                                        'Full Risk Analysis'
+                                    ),
+                                    React.createElement(
+                                        'li',
+                                        { className: 'flex items-center gap-3 text-sm text-slate-300' },
+                                        React.createElement(ChevronRight, { size: 16, className: 'text-blue-500' }),
+                                        'Retirement & Tax Projections'
+                                    ),
+                                    React.createElement(
+                                        'li',
+                                        { className: 'flex items-center gap-3 text-sm text-slate-300' },
+                                        React.createElement(ChevronRight, { size: 16, className: 'text-blue-500' }),
+                                        'Vulnerability & Strategic Intent'
+                                    )
+                                )
+                            ),
+                            React.createElement(
+                                'button',
+                                { className: 'w-full py-4 bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-lg shadow-blue-900/20' },
+                                'Obtain Free Financial Plan'
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const Footer = () => {
+            return React.createElement(
+                'footer',
+                { className: 'bg-slate-950 text-slate-400 py-12 border-t border-slate-900' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'grid md:grid-cols-4 gap-8 mb-8' },
+                        React.createElement(
+                            'div',
+                            { className: 'col-span-1 md:col-span-2' },
+                            React.createElement(
+                                'h4',
+                                { className: 'text-white font-serif text-xl mb-4' },
+                                'WEALTH ',
+                                React.createElement('span', { className: 'text-blue-600' }, 'FOUNDATIONS')
+                            ),
+                            React.createElement('p', { className: 'text-sm leading-relaxed max-w-sm' }, 'We build the structure for your financial future. Through active management and holistic planning, we ensure your legacy stands the test of time.')
+                        ),
+                        React.createElement(
+                            'div',
+                            null,
+                            React.createElement('h5', { className: 'text-white font-medium mb-4' }, 'Services'),
+                            React.createElement(
+                                'ul',
+                                { className: 'space-y-2 text-sm' },
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Financial Planning')),
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Investment Management')),
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Estate Planning')),
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Tax Analysis'))
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            null,
+                            React.createElement('h5', { className: 'text-white font-medium mb-4' }, 'Contact'),
+                            React.createElement(
+                                'ul',
+                                { className: 'space-y-2 text-sm' },
+                                React.createElement('li', null, 'Phone: (555) 123-4567'),
+                                React.createElement('li', null, 'Email: info@wealthfoundations.com'),
+                                React.createElement('li', null, 'Holland, Michigan')
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs' },
+                        React.createElement('p', null, '© ', new Date().getFullYear(), ' Wealth Foundations Partners. All rights reserved.'),
+                        React.createElement(
+                            'div',
+                            { className: 'mt-4 md:mt-0 flex gap-4' },
+                            React.createElement('a', { href: '#', className: 'hover:text-white transition-colors' }, 'Privacy Policy'),
+                            React.createElement('a', { href: '#', className: 'hover:text-white transition-colors' }, 'Terms of Service')
+                        )
+                    )
+                )
+            );
+        };
+
+        const App = () => {
+            return React.createElement(
+                'div',
+                { className: 'min-h-screen bg-white font-sans text-slate-900 selection:bg-blue-100' },
+                React.createElement(Navbar),
+                React.createElement(Hero),
+                React.createElement(Differentiators),
+                React.createElement(Custodians),
+                React.createElement(Actions),
+                React.createElement(Footer)
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
+</body>
+</html>
