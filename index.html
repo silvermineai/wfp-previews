@@ -60,7 +60,12 @@
             Menu,
             X,
             ChevronRight,
-            PieChart
+            PieChart,
+            Phone,
+            Target,
+            BarChart3,
+            Video,
+            Globe
         } from 'lucide-react';
         import { motion, AnimatePresence } from 'framer-motion';
 
@@ -100,7 +105,7 @@
                                 onClick: () => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }),
                                 className: 'px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium tracking-wide rounded-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-blue-900/20'
                             },
-                            'Schedule Meeting'
+                            'Schedule Virtual Meeting'
                         )
                     ),
                     React.createElement(
@@ -125,7 +130,7 @@
                             { className: 'flex flex-col p-6 space-y-4' },
                             React.createElement('a', { href: '#services', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'Services'),
                             React.createElement('a', { href: '#about', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'About'),
-                            React.createElement('a', { href: '#contact', onClick: () => setMobileMenuOpen(false), className: 'text-blue-400 font-semibold' }, 'Schedule Meeting')
+                            React.createElement('a', { href: '#contact', onClick: () => setMobileMenuOpen(false), className: 'text-blue-400 font-semibold' }, 'Schedule Virtual Meeting')
                         )
                     )
                 )
@@ -196,6 +201,16 @@
                         )
                     ),
                     React.createElement(
+                        motion.p,
+                        {
+                            initial: { opacity: 0, y: 20 },
+                            animate: { opacity: 1, y: 0 },
+                            transition: { duration: 0.8, delay: 4.5 },
+                            className: 'text-xl md:text-2xl text-slate-200 mb-10 max-w-2xl mx-auto font-light'
+                        },
+                        'Proactive wealth management designed for an evolving market.'
+                    ),
+                    React.createElement(
                         motion.div,
                         {
                             initial: { opacity: 0, y: 20 },
@@ -249,32 +264,14 @@
         const Differentiators = () => {
             const items = [
                 {
-                    icon: TrendingUp,
-                    title: "Active Tactical Management",
-                    description: "Our strategies don't sit still. We proactively reposition your portfolio based on market sentiment, constantly adjusting to seize opportunities and mitigate risk.",
-                    image: "images/v1-cards/activetactical.png"
-                },
-                {
                     icon: Briefcase,
                     title: "Decades of Experience",
                     description: "Leverage a team with deep industry knowledge. We've navigated complex market cycles, ensuring your wealth is managed with seasoned wisdom.",
                     image: "images/v1-cards/experience.png"
                 },
                 {
-                    icon: PieChart,
-                    title: "Holistic Planning",
-                    description: "We handle everything. From retirement and investment management to tax analysis and estate planning, our comprehensive approach leaves no stone unturned.",
-                    image: "images/v1-cards/holisticplanning.png"
-                },
-                {
-                    icon: BookOpen,
-                    title: "Client Education",
-                    description: "We believe in empowering you. We go beyond management to educate our clients on financial literacy, ensuring you understand the 'why' behind every move.",
-                    image: "images/v1-cards/clienteducation.png"
-                },
-                {
                     icon: Users,
-                    title: "Team Collaboration",
+                    title: "A Team Approach to Your Legacy",
                     description: "You don't just get an advisor; you get a team. Every client benefits from our collaborative approach, bringing diverse expertise to your financial picture.",
                     image: "images/v1-cards/teamcollaboration.png"
                 },
@@ -283,6 +280,24 @@
                     title: "Mandatory Quarterly Reviews",
                     description: "We are proactive, not reactive. Mandatory reviews ensure we stay aligned with your life changes and market conditions, keeping your plan on track.",
                     image: "images/v1-cards/quarterlyreviews.png"
+                },
+                {
+                    icon: TrendingUp,
+                    title: "Active Tactical Management",
+                    description: "Our strategies don't sit still. We proactively reposition your portfolio based on market sentiment, constantly adjusting to seize opportunities and mitigate risk.",
+                    image: "images/v1-cards/activetactical.png"
+                },
+                {
+                    icon: BookOpen,
+                    title: "Client Education",
+                    description: "We believe in empowering you. We go beyond management to educate our clients on financial literacy, ensuring you understand the 'why' behind every move.",
+                    image: "images/v1-cards/clienteducation.png"
+                },
+                {
+                    icon: PieChart,
+                    title: "Holistic Planning",
+                    description: "We handle everything. From retirement and investment management to tax analysis and estate planning, our comprehensive approach leaves no stone unturned.",
+                    image: "images/v1-cards/holisticplanning.png"
                 }
             ];
 
@@ -295,9 +310,9 @@
                     React.createElement(
                         'div',
                         { className: 'text-center max-w-3xl mx-auto mb-16' },
-                        React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'Wealth Foundations Partners have higher standards'),
+                        React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'A Modern Virtual Advisory Firm'),
                         React.createElement('h2', { className: 'text-3xl md:text-5xl font-serif text-slate-900 mt-3 mb-6' }, 'Six Cornerstones You Won\'t Find Anywhere Else'),
-                        React.createElement('p', { className: 'text-slate-600' }, 'We move beyond the traditional "buy and hold" mentality to provide a dynamic, service-first experience.')
+                        React.createElement('p', { className: 'text-slate-600' }, 'We move beyond the traditional "buy and hold" mentality to provide a dynamic, service-first experience—accessible from anywhere through our virtual platform.')
                     ),
                     React.createElement(
                         'div',
@@ -315,6 +330,56 @@
                 React.createElement(
                     'div',
                     { className: 'container mx-auto px-6' },
+                    // Virtual Advisory Benefits
+                    React.createElement(
+                        'div',
+                        { className: 'max-w-4xl mx-auto mb-16' },
+                        React.createElement(
+                            'div',
+                            { className: 'text-center mb-10' },
+                            React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'The Virtual Advantage'),
+                            React.createElement('h2', { className: 'text-3xl md:text-4xl font-serif text-slate-900 mt-3 mb-4' }, 'Expert Guidance, Wherever You Are'),
+                            React.createElement('p', { className: 'text-slate-600 max-w-2xl mx-auto' }, 'As a fully virtual advisory firm, we bring institutional-quality wealth management directly to you—no office visits required.')
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'grid md:grid-cols-3 gap-6' },
+                            React.createElement(
+                                'div',
+                                { className: 'bg-slate-50 rounded-lg p-6 text-center' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4' },
+                                    React.createElement(Globe, { className: 'text-blue-600', size: 24 })
+                                ),
+                                React.createElement('h4', { className: 'font-semibold text-slate-900 mb-2' }, 'Meet From Anywhere'),
+                                React.createElement('p', { className: 'text-slate-600 text-sm' }, 'Connect with your advisory team from home, the office, or while traveling.')
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'bg-slate-50 rounded-lg p-6 text-center' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4' },
+                                    React.createElement(Calendar, { className: 'text-blue-600', size: 24 })
+                                ),
+                                React.createElement('h4', { className: 'font-semibold text-slate-900 mb-2' }, 'Flexible Scheduling'),
+                                React.createElement('p', { className: 'text-slate-600 text-sm' }, 'Book meetings that fit your schedule without commute time or geographic constraints.')
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'bg-slate-50 rounded-lg p-6 text-center' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4' },
+                                    React.createElement(Video, { className: 'text-blue-600', size: 24 })
+                                ),
+                                React.createElement('h4', { className: 'font-semibold text-slate-900 mb-2' }, 'Face-to-Face Connection'),
+                                React.createElement('p', { className: 'text-slate-600 text-sm' }, 'Build meaningful relationships through high-quality video consultations with your dedicated team.')
+                            )
+                        )
+                    ),
+                    // Custodians Section
                     React.createElement(
                         'div',
                         { className: 'bg-slate-900 rounded-2xl p-10 md:p-16 relative overflow-hidden' },
@@ -368,6 +433,92 @@
                         React.createElement('h2', { className: 'text-3xl md:text-5xl font-serif text-slate-900 mb-6' }, 'Start Your Journey'),
                         React.createElement('p', { className: 'text-slate-600 max-w-2xl mx-auto' }, 'Whether you are ready for a comprehensive deep dive or just want to learn more about our tactical approach, we have a path for you.')
                     ),
+                    // 90-Day Timeline Section
+                    React.createElement(
+                        'div',
+                        { className: 'max-w-5xl mx-auto mb-20' },
+                        React.createElement(
+                            'div',
+                            { className: 'text-center mb-12' },
+                            React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'Your First 90 Days'),
+                            React.createElement('h3', { className: 'text-2xl md:text-3xl font-serif text-slate-900 mt-3' }, 'How We Work Together')
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'grid md:grid-cols-3 gap-8' },
+                            // Step 1
+                            React.createElement(
+                                motion.div,
+                                {
+                                    initial: { opacity: 0, y: 20 },
+                                    whileInView: { opacity: 1, y: 0 },
+                                    viewport: { once: true },
+                                    transition: { duration: 0.5, delay: 0 },
+                                    className: 'relative'
+                                },
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-white border border-slate-200 rounded-lg p-8 text-center h-full shadow-sm hover:shadow-md transition-shadow' },
+                                    React.createElement(
+                                        'div',
+                                        { className: 'w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6' },
+                                        React.createElement(Video, { className: 'text-blue-600', size: 28 })
+                                    ),
+                                    React.createElement('div', { className: 'text-blue-600 font-bold text-sm mb-2' }, 'STEP 1'),
+                                    React.createElement('h4', { className: 'text-xl font-serif text-slate-900 mb-4' }, 'Discovery Call'),
+                                    React.createElement('p', { className: 'text-slate-600 text-sm leading-relaxed' }, 'Connect with your virtual advisor for a brief 15-30 minute introductory call. We\'ll learn about your financial goals, current situation, and what matters most to you.')
+                                ),
+                                React.createElement('div', { className: 'hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-blue-200' })
+                            ),
+                            // Step 2
+                            React.createElement(
+                                motion.div,
+                                {
+                                    initial: { opacity: 0, y: 20 },
+                                    whileInView: { opacity: 1, y: 0 },
+                                    viewport: { once: true },
+                                    transition: { duration: 0.5, delay: 0.1 },
+                                    className: 'relative'
+                                },
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-white border border-slate-200 rounded-lg p-8 text-center h-full shadow-sm hover:shadow-md transition-shadow' },
+                                    React.createElement(
+                                        'div',
+                                        { className: 'w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6' },
+                                        React.createElement(Target, { className: 'text-blue-600', size: 28 })
+                                    ),
+                                    React.createElement('div', { className: 'text-blue-600 font-bold text-sm mb-2' }, 'STEP 2'),
+                                    React.createElement('h4', { className: 'text-xl font-serif text-slate-900 mb-4' }, 'Strategic Planning'),
+                                    React.createElement('p', { className: 'text-slate-600 text-sm leading-relaxed' }, 'Our team of advisors collaborates to craft a personalized strategy tailored to your unique needs. Multiple perspectives ensure no detail is overlooked.')
+                                ),
+                                React.createElement('div', { className: 'hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-blue-200' })
+                            ),
+                            // Step 3
+                            React.createElement(
+                                motion.div,
+                                {
+                                    initial: { opacity: 0, y: 20 },
+                                    whileInView: { opacity: 1, y: 0 },
+                                    viewport: { once: true },
+                                    transition: { duration: 0.5, delay: 0.2 },
+                                    className: 'relative'
+                                },
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-white border border-slate-200 rounded-lg p-8 text-center h-full shadow-sm hover:shadow-md transition-shadow' },
+                                    React.createElement(
+                                        'div',
+                                        { className: 'w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6' },
+                                        React.createElement(BarChart3, { className: 'text-blue-600', size: 28 })
+                                    ),
+                                    React.createElement('div', { className: 'text-blue-600 font-bold text-sm mb-2' }, 'STEP 3'),
+                                    React.createElement('h4', { className: 'text-xl font-serif text-slate-900 mb-4' }, 'Ongoing Partnership'),
+                                    React.createElement('p', { className: 'text-slate-600 text-sm leading-relaxed' }, 'Meet virtually with your advisor each quarter to review progress, adjust strategies, and ensure your financial plan evolves with your life.')
+                                )
+                            )
+                        )
+                    ),
                     React.createElement(
                         'div',
                         { className: 'grid md:grid-cols-2 gap-8 max-w-5xl mx-auto' },
@@ -385,8 +536,8 @@
                                     { className: 'bg-slate-100 w-12 h-12 rounded-full flex items-center justify-center mb-6' },
                                     React.createElement(Users, { className: 'text-slate-600', size: 24 })
                                 ),
-                                React.createElement('h3', { className: 'text-2xl font-serif text-slate-900 mb-3' }, 'Introductory Meeting'),
-                                React.createElement('p', { className: 'text-slate-600 mb-6 leading-relaxed' }, 'Curious about Active Tactical Management? Schedule a no-obligation introduction. We\'ll show you why our approach works so well and how we protect capital in volatile markets.'),
+                                React.createElement('h3', { className: 'text-2xl font-serif text-slate-900 mb-3' }, 'Virtual Introduction'),
+                                React.createElement('p', { className: 'text-slate-600 mb-6 leading-relaxed' }, 'Curious about Active Tactical Management? Schedule a no-obligation virtual introduction from the comfort of your home. We\'ll show you why our approach works so well and how we protect capital in volatile markets.'),
                                 React.createElement(
                                     'ul',
                                     { className: 'space-y-3 mb-8' },
@@ -431,7 +582,7 @@
                                     React.createElement(TrendingUp, { className: 'text-white', size: 24 })
                                 ),
                                 React.createElement('h3', { className: 'text-2xl font-serif text-white mb-3' }, 'Get Your Free Financial Plan'),
-                                React.createElement('p', { className: 'text-slate-300 mb-6 leading-relaxed' }, 'Ready to get serious? We offer a comprehensive financial plan at no cost. This is a deep dive where we analyze your data to provide actionable, risk-based performance insights.'),
+                                React.createElement('p', { className: 'text-slate-300 mb-6 leading-relaxed' }, 'Ready to get serious? We offer a comprehensive financial plan at no cost—all delivered through convenient virtual consultations. This is a deep dive where we analyze your data to provide actionable, risk-based performance insights.'),
                                 React.createElement(
                                     'ul',
                                     { className: 'space-y-3 mb-8' },
@@ -485,7 +636,7 @@
                                 'WEALTH ',
                                 React.createElement('span', { className: 'text-blue-600' }, 'FOUNDATIONS')
                             ),
-                            React.createElement('p', { className: 'text-sm leading-relaxed max-w-sm' }, 'We build the structure for your financial future. Through active management and holistic planning, we ensure your legacy stands the test of time.')
+                            React.createElement('p', { className: 'text-sm leading-relaxed max-w-sm' }, 'A virtual advisory firm building the structure for your financial future. Through active management and holistic planning—accessible from anywhere—we ensure your legacy stands the test of time.')
                         ),
                         React.createElement(
                             'div',
