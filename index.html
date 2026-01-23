@@ -87,7 +87,7 @@
 
             return React.createElement(
                 'nav',
-                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-4' : 'bg-transparent py-6'}` },
+                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg py-4' : 'bg-transparent py-6'}` },
                 React.createElement(
                     'div',
                     { className: 'container mx-auto px-6 flex justify-between items-center' },
@@ -99,8 +99,8 @@
                     React.createElement(
                         'div',
                         { className: 'hidden md:flex items-center space-x-8' },
-                        React.createElement('a', { href: 'index.html', className: 'text-white text-sm uppercase tracking-widest transition-colors border-b border-blue-400 pb-1' }, 'Home'),
-                        React.createElement('a', { href: 'services.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Services'),
+                        React.createElement('a', { href: 'index.html', className: `${isScrolled ? 'text-slate-900' : 'text-white'} text-sm uppercase tracking-widest transition-colors border-b border-blue-400 pb-1` }, 'Home'),
+                        React.createElement('a', { href: 'services.html', className: `${isScrolled ? 'text-slate-600 hover:text-slate-900' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors` }, 'Services'),
                         // About Dropdown
                         React.createElement(
                             'div',
@@ -111,7 +111,7 @@
                             },
                             React.createElement(
                                 'button',
-                                { className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors flex items-center gap-1' },
+                                { className: `${isScrolled ? 'text-slate-600 hover:text-slate-900' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors flex items-center gap-1` },
                                 'About',
                                 React.createElement(ChevronDown, { size: 14 })
                             ),
@@ -136,7 +136,7 @@
                             },
                             React.createElement(
                                 'button',
-                                { className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors flex items-center gap-1' },
+                                { className: `${isScrolled ? 'text-slate-600 hover:text-slate-900' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors flex items-center gap-1` },
                                 'Resources',
                                 React.createElement(ChevronDown, { size: 14 })
                             ),
@@ -150,7 +150,7 @@
                                 )
                             )
                         ),
-                        React.createElement('a', { href: 'contact.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Contact'),
+                        React.createElement('a', { href: 'contact.html', className: `${isScrolled ? 'text-slate-600 hover:text-slate-900' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors` }, 'Contact'),
                         React.createElement(
                             'button',
                             {
@@ -162,7 +162,7 @@
                     ),
                     React.createElement(
                         'button',
-                        { className: 'md:hidden text-white', onClick: () => setMobileMenuOpen(!mobileMenuOpen) },
+                        { className: `md:hidden ${isScrolled ? 'text-slate-900' : 'text-white'}`, onClick: () => setMobileMenuOpen(!mobileMenuOpen) },
                         mobileMenuOpen ? React.createElement(X, { size: 28 }) : React.createElement(Menu, { size: 28 })
                     )
                 ),
