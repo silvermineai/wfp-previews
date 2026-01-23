@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Joanne Chapman | Wealth Foundations Partners</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        slate: {
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Import Map for React modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react",
+            "framer-motion": "https://esm.sh/framer-motion@10.12.16?external=react,react-dom"
+        }
+    }
+    </script>
+</head>
+<body class="bg-white text-slate-900 antialiased selection:bg-blue-100">
+    <div id="root"></div>
+
+    <!-- Application Code -->
+    <script type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import {
+            Menu,
+            X,
+            Mail,
+            ArrowLeft,
+            ArrowRight
+        } from 'lucide-react';
+        import { motion, AnimatePresence } from 'framer-motion';
+
+        const memberData = {
+            name: 'Dr. Joanne Chapman',
+            title: 'President of Wealth Foundations',
+            subtitle: 'Licensed Investment Advisor',
+            email: 'jchapman@mywealthfoundations.com',
+            image: '../images/team/joanne-chapman.jpg',
+            bio: [
+                "Joanne is a middle child, born to two amazing parents in Rochester, New York. Her mom, a high school valedictorian and Registered Nurse; Dad a war veteran and R&D technologist. Joanne grew up in a household keen on learning, scientific advancement, and striving for a healthy, secure home.",
+                "Dr. Chapman counts among her life accomplishments: a BS in psychology (UofUtah), her Utah Life and Health Insurance License, her Series 65 financial license as well as a Doctorate in Pharmacy, also from the University of Utah.",
+                "She calls Utah her home state now, living in the shadow of the Copper Mine with her spouse, Michael. Their home is also homebase for their seven children and a couple of non-adventurous cats.",
+                "One of her fundamental philosophies in life: Because healthcare is about molding a better health future for your patients and financial advising is about molding a better financial future for your clients, the synergy of both is key to a joyful retirement.",
+                "Joanne is a fiduciary, obligated to act in the best interest of her clients. Always."
+            ]
+        };
+
+        const Navbar = () => {
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return React.createElement(
+                'nav',
+                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-4' : 'bg-slate-900 py-6'}` },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6 flex justify-between items-center' },
+                    React.createElement(
+                        'a',
+                        { href: '../index.html', className: 'text-white font-serif text-2xl tracking-wide font-semibold' },
+                        'WEALTH ',
+                        React.createElement('span', { className: 'text-blue-400' }, 'FOUNDATIONS'),
+                        ' PARTNERS'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'hidden md:flex items-center space-x-8' },
+                        React.createElement('a', { href: '../services.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Services'),
+                        React.createElement('a', { href: '../about.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'About'),
+                        React.createElement('a', { href: '../team.html', className: 'text-white text-sm uppercase tracking-widest transition-colors border-b border-blue-400 pb-1' }, 'Our Team'),
+                        React.createElement(
+                            'a',
+                            {
+                                href: '../index.html#contact',
+                                className: 'px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium tracking-wide rounded-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-blue-900/20'
+                            },
+                            'Schedule Virtual Meeting'
+                        )
+                    ),
+                    React.createElement(
+                        'button',
+                        { className: 'md:hidden text-white', onClick: () => setMobileMenuOpen(!mobileMenuOpen) },
+                        mobileMenuOpen ? React.createElement(X, { size: 28 }) : React.createElement(Menu, { size: 28 })
+                    )
+                ),
+                React.createElement(
+                    AnimatePresence,
+                    null,
+                    mobileMenuOpen && React.createElement(
+                        motion.div,
+                        {
+                            initial: { opacity: 0, height: 0 },
+                            animate: { opacity: 1, height: 'auto' },
+                            exit: { opacity: 0, height: 0 },
+                            className: 'md:hidden bg-slate-900 border-t border-slate-800'
+                        },
+                        React.createElement(
+                            'div',
+                            { className: 'flex flex-col p-6 space-y-4' },
+                            React.createElement('a', { href: '../services.html', className: 'text-slate-200 hover:text-blue-400' }, 'Services'),
+                            React.createElement('a', { href: '../about.html', className: 'text-slate-200 hover:text-blue-400' }, 'About'),
+                            React.createElement('a', { href: '../team.html', className: 'text-blue-400 font-semibold' }, 'Our Team'),
+                            React.createElement('a', { href: '../index.html#contact', className: 'text-slate-200 hover:text-blue-400' }, 'Schedule Virtual Meeting')
+                        )
+                    )
+                )
+            );
+        };
+
+        const BioContent = () => {
+            return React.createElement(
+                'section',
+                { className: 'pt-32 pb-20 bg-white' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    // Back button
+                    React.createElement(
+                        'a',
+                        { href: '../team.html', className: 'inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors mb-8' },
+                        React.createElement(ArrowLeft, { size: 20 }),
+                        'Back to Team'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'grid lg:grid-cols-3 gap-12' },
+                        // Left column - Image and contact
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: -20 },
+                                animate: { opacity: 1, x: 0 },
+                                transition: { duration: 0.6 },
+                                className: 'lg:col-span-1'
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'sticky top-32' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-slate-200 rounded-sm overflow-hidden mb-6 aspect-[3/4]' },
+                                    React.createElement('img', {
+                                        src: memberData.image,
+                                        alt: memberData.name,
+                                        className: 'w-full h-full object-cover object-top',
+                                        onError: (e) => {
+                                            e.target.style.display = 'none';
+                                            e.target.parentElement.classList.add('flex', 'items-center', 'justify-center');
+                                            e.target.parentElement.innerHTML = '<div class="text-slate-400 text-center"><svg class="w-24 h-24 mx-auto mb-2 text-slate-300" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg><span>Photo Coming Soon</span></div>';
+                                        }
+                                    })
+                                ),
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-slate-50 p-6 rounded-sm' },
+                                    React.createElement('h3', { className: 'font-semibold text-slate-900 mb-4' }, 'Contact Information'),
+                                    memberData.email && React.createElement(
+                                        'a',
+                                        { href: `mailto:${memberData.email}`, className: 'inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors text-sm' },
+                                        React.createElement(Mail, { size: 16 }),
+                                        memberData.email
+                                    )
+                                )
+                            )
+                        ),
+                        // Right column - Bio content
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: 20 },
+                                animate: { opacity: 1, x: 0 },
+                                transition: { duration: 0.6, delay: 0.2 },
+                                className: 'lg:col-span-2'
+                            },
+                            React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, memberData.title),
+                            memberData.subtitle && React.createElement('p', { className: 'text-slate-500 mt-1' }, memberData.subtitle),
+                            React.createElement('h1', { className: 'text-4xl md:text-5xl font-serif text-slate-900 mt-4 mb-8' }, memberData.name),
+                            React.createElement(
+                                'div',
+                                { className: 'prose prose-lg max-w-none' },
+                                memberData.bio.map((paragraph, index) =>
+                                    React.createElement('p', { key: index, className: 'text-slate-600 leading-relaxed mb-6' }, paragraph)
+                                )
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'mt-12 pt-8 border-t border-slate-200' },
+                                React.createElement(
+                                    'a',
+                                    {
+                                        href: '../index.html#contact',
+                                        className: 'inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-blue-900/20 group'
+                                    },
+                                    'Schedule a Meeting',
+                                    React.createElement(ArrowRight, { className: 'w-4 h-4 group-hover:translate-x-1 transition-transform' })
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const Footer = () => {
+            return React.createElement(
+                'footer',
+                { className: 'bg-slate-950 text-slate-400 py-12 border-t border-slate-900' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'grid md:grid-cols-4 gap-8 mb-8' },
+                        React.createElement(
+                            'div',
+                            { className: 'col-span-1 md:col-span-2' },
+                            React.createElement(
+                                'a',
+                                { href: '../index.html', className: 'text-white font-serif text-xl mb-4 inline-block' },
+                                'WEALTH ',
+                                React.createElement('span', { className: 'text-blue-600' }, 'FOUNDATIONS')
+                            ),
+                            React.createElement('p', { className: 'text-sm leading-relaxed max-w-sm' }, 'A virtual advisory firm building the structure for your financial future. Through active management and holistic planning—accessible from anywhere—we ensure your legacy stands the test of time.')
+                        ),
+                        React.createElement(
+                            'div',
+                            null,
+                            React.createElement('h5', { className: 'text-white font-medium mb-4' }, 'Services'),
+                            React.createElement(
+                                'ul',
+                                { className: 'space-y-2 text-sm' },
+                                React.createElement('li', null, React.createElement('a', { href: '../services.html', className: 'hover:text-blue-500 transition-colors' }, 'Financial Planning')),
+                                React.createElement('li', null, React.createElement('a', { href: '../services.html', className: 'hover:text-blue-500 transition-colors' }, 'Investment Management')),
+                                React.createElement('li', null, React.createElement('a', { href: '../services.html', className: 'hover:text-blue-500 transition-colors' }, 'Estate Planning')),
+                                React.createElement('li', null, React.createElement('a', { href: '../services.html', className: 'hover:text-blue-500 transition-colors' }, 'Tax Analysis'))
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            null,
+                            React.createElement('h5', { className: 'text-white font-medium mb-4' }, 'Contact'),
+                            React.createElement(
+                                'ul',
+                                { className: 'space-y-2 text-sm' },
+                                React.createElement('li', null, 'Phone: (555) 123-4567'),
+                                React.createElement('li', null, 'Email: info@wealthfoundations.com'),
+                                React.createElement('li', null, 'Salt Lake Valley, Utah')
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs' },
+                        React.createElement('p', null, '© ', new Date().getFullYear(), ' Wealth Foundations Partners. All rights reserved.'),
+                        React.createElement(
+                            'div',
+                            { className: 'mt-4 md:mt-0 flex gap-4' },
+                            React.createElement('a', { href: '#', className: 'hover:text-white transition-colors' }, 'Privacy Policy'),
+                            React.createElement('a', { href: '#', className: 'hover:text-white transition-colors' }, 'Terms of Service')
+                        )
+                    )
+                )
+            );
+        };
+
+        const App = () => {
+            return React.createElement(
+                'div',
+                { className: 'min-h-screen bg-white font-sans text-slate-900 selection:bg-blue-100' },
+                React.createElement(Navbar),
+                React.createElement(BioContent),
+                React.createElement(Footer)
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
+</body>
+</html>
