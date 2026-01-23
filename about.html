@@ -58,11 +58,11 @@
             Users,
             Video,
             Globe,
-            Heart,
-            Award,
+            BookOpen,
+            Briefcase,
             TrendingUp,
-            Clock,
-            CheckCircle2
+            Calendar,
+            ChevronRight
         } from 'lucide-react';
         import { motion, AnimatePresence } from 'framer-motion';
 
@@ -228,7 +228,7 @@
                     description: 'We make financial planning accessible through convenient virtual meetings, eliminating geographic barriers and saving you time.'
                 },
                 {
-                    icon: Heart,
+                    icon: Target,
                     title: 'Client-Focused',
                     description: 'We believe that financial education and advice are most effective when they are personalized and transparent, tailored to your unique needs.'
                 },
@@ -351,7 +351,7 @@
                                             transition: { duration: 0.3, delay: index * 0.1 },
                                             className: 'flex items-center gap-3'
                                         },
-                                        React.createElement(CheckCircle2, { className: 'text-blue-400 flex-shrink-0', size: 20 }),
+                                        React.createElement(ChevronRight, { className: 'text-blue-400 flex-shrink-0', size: 20 }),
                                         React.createElement('span', { className: 'text-slate-300' }, feature)
                                     )
                                 )
@@ -370,12 +370,12 @@
                     description: 'We serve individuals and businesses in Utah and across the nation.'
                 },
                 {
-                    icon: Clock,
+                    icon: Calendar,
                     title: '30-Minute Meetings',
                     description: 'Efficient virtual consultations that respect your valuable time.'
                 },
                 {
-                    icon: Award,
+                    icon: Briefcase,
                     title: 'Registered Investment Advisor',
                     description: 'Fully licensed and registered to provide investment advice.'
                 },
