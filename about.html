@@ -116,9 +116,13 @@
                             ),
                             aboutDropdownOpen && React.createElement(
                                 'div',
-                                { className: 'absolute top-full left-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-sm shadow-lg py-2' },
-                                React.createElement('a', { href: 'about.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'About Us'),
-                                React.createElement('a', { href: 'team.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'Your Wealth Partners')
+                                { className: 'absolute top-full left-0 pt-2 w-48' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-slate-900 border border-slate-700 rounded-sm shadow-lg py-2' },
+                                    React.createElement('a', { href: 'about.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'About Us'),
+                                    React.createElement('a', { href: 'team.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'Your Wealth Partners')
+                                )
                             )
                         ),
                         // Resources Dropdown
@@ -137,8 +141,12 @@
                             ),
                             resourcesDropdownOpen && React.createElement(
                                 'div',
-                                { className: 'absolute top-full left-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-sm shadow-lg py-2' },
-                                React.createElement('a', { href: 'learning-hub.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'Learning Hub')
+                                { className: 'absolute top-full left-0 pt-2 w-48' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'bg-slate-900 border border-slate-700 rounded-sm shadow-lg py-2' },
+                                    React.createElement('a', { href: 'learning-hub.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'Learning Hub')
+                                )
                             )
                         ),
                         React.createElement('a', { href: 'contact.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Contact'),
