@@ -53,7 +53,9 @@
             Menu,
             X,
             Mail,
-            ArrowRight
+            ArrowRight,
+            ChevronDown,
+            ShieldCheck
         } from 'lucide-react';
         import { motion, AnimatePresence } from 'framer-motion';
 
@@ -143,6 +145,8 @@
         const Navbar = () => {
             const [isScrolled, setIsScrolled] = useState(false);
             const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+            const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+            const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
 
             useEffect(() => {
                 const handleScroll = () => {
@@ -168,9 +172,50 @@
                     React.createElement(
                         'div',
                         { className: 'hidden md:flex items-center space-x-8' },
+                        React.createElement('a', { href: 'index.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Home'),
                         React.createElement('a', { href: 'services.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Services'),
-                        React.createElement('a', { href: 'about.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'About'),
-                        React.createElement('a', { href: 'team.html', className: 'text-white text-sm uppercase tracking-widest transition-colors border-b border-blue-400 pb-1' }, 'Our Team'),
+                        // About Dropdown
+                        React.createElement(
+                            'div',
+                            {
+                                className: 'relative',
+                                onMouseEnter: () => setAboutDropdownOpen(true),
+                                onMouseLeave: () => setAboutDropdownOpen(false)
+                            },
+                            React.createElement(
+                                'button',
+                                { className: 'text-white text-sm uppercase tracking-widest transition-colors flex items-center gap-1 border-b border-blue-400 pb-1' },
+                                'About',
+                                React.createElement(ChevronDown, { size: 14 })
+                            ),
+                            aboutDropdownOpen && React.createElement(
+                                'div',
+                                { className: 'absolute top-full left-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-sm shadow-lg py-2' },
+                                React.createElement('a', { href: 'about.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'About Us'),
+                                React.createElement('a', { href: 'team.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'Your Wealth Partners')
+                            )
+                        ),
+                        // Resources Dropdown
+                        React.createElement(
+                            'div',
+                            {
+                                className: 'relative',
+                                onMouseEnter: () => setResourcesDropdownOpen(true),
+                                onMouseLeave: () => setResourcesDropdownOpen(false)
+                            },
+                            React.createElement(
+                                'button',
+                                { className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors flex items-center gap-1' },
+                                'Resources',
+                                React.createElement(ChevronDown, { size: 14 })
+                            ),
+                            resourcesDropdownOpen && React.createElement(
+                                'div',
+                                { className: 'absolute top-full left-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-sm shadow-lg py-2' },
+                                React.createElement('a', { href: 'learning-hub.html', className: 'block px-4 py-2 text-slate-200 hover:text-white hover:bg-slate-800 text-sm' }, 'Learning Hub')
+                            )
+                        ),
+                        React.createElement('a', { href: 'contact.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Contact'),
                         React.createElement(
                             'a',
                             {
@@ -200,10 +245,13 @@
                         React.createElement(
                             'div',
                             { className: 'flex flex-col p-6 space-y-4' },
+                            React.createElement('a', { href: 'index.html', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'Home'),
                             React.createElement('a', { href: 'services.html', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'Services'),
-                            React.createElement('a', { href: 'about.html', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'About'),
-                            React.createElement('a', { href: 'team.html', onClick: () => setMobileMenuOpen(false), className: 'text-blue-400 font-semibold' }, 'Our Team'),
-                            React.createElement('a', { href: 'index.html#contact', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'Schedule Virtual Meeting')
+                            React.createElement('a', { href: 'about.html', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'About Us'),
+                            React.createElement('a', { href: 'team.html', onClick: () => setMobileMenuOpen(false), className: 'text-blue-400 font-semibold pl-4' }, 'Your Wealth Partners'),
+                            React.createElement('a', { href: 'learning-hub.html', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'Learning Hub'),
+                            React.createElement('a', { href: 'contact.html', onClick: () => setMobileMenuOpen(false), className: 'text-slate-200 hover:text-blue-400' }, 'Contact'),
+                            React.createElement('a', { href: 'index.html#contact', onClick: () => setMobileMenuOpen(false), className: 'text-blue-400 font-semibold' }, 'Schedule Virtual Meeting')
                         )
                     )
                 )
@@ -349,12 +397,57 @@
         };
 
         const Footer = () => {
+            const [email, setEmail] = useState('');
+            const [subscribed, setSubscribed] = useState(false);
+
+            const handleSubscribe = (e) => {
+                e.preventDefault();
+                if (email) {
+                    setSubscribed(true);
+                    setEmail('');
+                }
+            };
+
             return React.createElement(
                 'footer',
                 { className: 'bg-slate-950 text-slate-400 py-12 border-t border-slate-900' },
                 React.createElement(
                     'div',
                     { className: 'container mx-auto px-6' },
+                    // Email Subscribe Section
+                    React.createElement(
+                        'div',
+                        { className: 'bg-slate-900 rounded-lg p-8 mb-12' },
+                        React.createElement(
+                            'div',
+                            { className: 'max-w-2xl mx-auto text-center' },
+                            React.createElement('h4', { className: 'text-2xl font-serif text-white mb-3' }, 'Stay Informed'),
+                            React.createElement('p', { className: 'text-slate-400 mb-6' }, 'Subscribe to our newsletter for financial tips, market insights, and updates on our services.'),
+                            subscribed ? React.createElement(
+                                'div',
+                                { className: 'flex items-center justify-center gap-2 text-green-400' },
+                                React.createElement(ShieldCheck, { size: 20 }),
+                                React.createElement('span', null, 'Thank you for subscribing!')
+                            ) : React.createElement(
+                                'form',
+                                { onSubmit: handleSubscribe, className: 'flex flex-col sm:flex-row gap-3 max-w-md mx-auto' },
+                                React.createElement('input', {
+                                    type: 'email',
+                                    placeholder: 'Enter your email',
+                                    value: email,
+                                    onChange: (e) => setEmail(e.target.value),
+                                    className: 'flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors',
+                                    required: true
+                                }),
+                                React.createElement(
+                                    'button',
+                                    { type: 'submit', className: 'px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-sm transition-colors flex items-center justify-center gap-2' },
+                                    React.createElement(Mail, { size: 18 }),
+                                    'Subscribe'
+                                )
+                            )
+                        )
+                    ),
                     React.createElement(
                         'div',
                         { className: 'grid md:grid-cols-4 gap-8 mb-8' },
@@ -389,7 +482,8 @@
                             React.createElement(
                                 'ul',
                                 { className: 'space-y-2 text-sm' },
-                                React.createElement('li', null, 'Phone: (555) 123-4567'),
+                                React.createElement('li', null, 'Local: (801) 780-8090'),
+                                React.createElement('li', null, 'Toll Free: (888) 785-0020'),
                                 React.createElement('li', null, 'Email: info@wealthfoundations.com'),
                                 React.createElement('li', null, 'Salt Lake Valley, Utah')
                             )
