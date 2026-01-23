@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Wealth Foundations Partners</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        slate: {
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Import Map for React modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react",
+            "framer-motion": "https://esm.sh/framer-motion@10.12.16?external=react,react-dom"
+        }
+    }
+    </script>
+</head>
+<body class="bg-white text-slate-900 antialiased selection:bg-blue-100">
+    <div id="root"></div>
+
+    <!-- Application Code -->
+    <script type="module">
+        import React, { useState, useEffect } from 'react';
+        import { createRoot } from 'react-dom/client';
+        import {
+            Menu,
+            X,
+            ArrowRight,
+            Users,
+            Briefcase,
+            Target,
+            ChevronRight,
+            TrendingUp,
+            BarChart3,
+            ShieldCheck,
+            PieChart,
+            BookOpen,
+            Video,
+            Globe,
+            Calendar,
+            Phone
+        } from 'lucide-react';
+        import { motion, AnimatePresence } from 'framer-motion';
+
+        const Navbar = () => {
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            return React.createElement(
+                'nav',
+                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-4' : 'bg-slate-900 py-6'}` },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6 flex justify-between items-center' },
+                    React.createElement(
+                        'a',
+                        { href: 'index.html', className: 'text-white font-serif text-2xl tracking-wide font-semibold' },
+                        'WEALTH ',
+                        React.createElement('span', { className: 'text-blue-400' }, 'FOUNDATIONS'),
+                        ' PARTNERS'
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'hidden md:flex items-center space-x-8' },
+                        React.createElement('a', { href: 'services.html', className: 'text-white text-sm uppercase tracking-widest transition-colors border-b border-blue-400 pb-1' }, 'Services'),
+                        React.createElement('a', { href: 'about.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'About'),
+                        React.createElement('a', { href: 'team.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Our Team'),
+                        React.createElement(
+                            'a',
+                            {
+                                href: 'index.html#contact',
+                                className: 'px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium tracking-wide rounded-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-blue-900/20'
+                            },
+                            'Schedule Virtual Meeting'
+                        )
+                    ),
+                    React.createElement(
+                        'button',
+                        { className: 'md:hidden text-white', onClick: () => setMobileMenuOpen(!mobileMenuOpen) },
+                        mobileMenuOpen ? React.createElement(X, { size: 28 }) : React.createElement(Menu, { size: 28 })
+                    )
+                ),
+                React.createElement(
+                    AnimatePresence,
+                    null,
+                    mobileMenuOpen && React.createElement(
+                        motion.div,
+                        {
+                            initial: { opacity: 0, height: 0 },
+                            animate: { opacity: 1, height: 'auto' },
+                            exit: { opacity: 0, height: 0 },
+                            className: 'md:hidden bg-slate-900 border-t border-slate-800'
+                        },
+                        React.createElement(
+                            'div',
+                            { className: 'flex flex-col p-6 space-y-4' },
+                            React.createElement('a', { href: 'services.html', className: 'text-blue-400 font-semibold' }, 'Services'),
+                            React.createElement('a', { href: 'about.html', className: 'text-slate-200 hover:text-blue-400' }, 'About'),
+                            React.createElement('a', { href: 'team.html', className: 'text-slate-200 hover:text-blue-400' }, 'Our Team'),
+                            React.createElement('a', { href: 'index.html#contact', className: 'text-slate-200 hover:text-blue-400' }, 'Schedule Virtual Meeting')
+                        )
+                    )
+                )
+            );
+        };
+
+        const ServicesHero = () => {
+            return React.createElement(
+                'section',
+                { className: 'bg-slate-900 pt-32 pb-20 relative overflow-hidden' },
+                React.createElement('div', { className: 'absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -mr-48 -mt-48' }),
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6 text-center relative z-10' },
+                    React.createElement(
+                        motion.div,
+                        {
+                            initial: { opacity: 0, y: 20 },
+                            animate: { opacity: 1, y: 0 },
+                            transition: { duration: 0.8 }
+                        },
+                        React.createElement('span', { className: 'text-blue-400 font-semibold tracking-wider text-sm uppercase' }, 'Our Services'),
+                        React.createElement('h1', { className: 'text-4xl md:text-6xl font-serif text-white mt-4 mb-6' }, 'Comprehensive Financial Solutions'),
+                        React.createElement(
+                            'p',
+                            { className: 'text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed' },
+                            'From budgeting to investments, our personalized approach ensures your goals become a reality.'
+                        )
+                    )
+                )
+            );
+        };
+
+        const ForIndividuals = () => {
+            const services = [
+                { icon: PieChart, title: '401(k) Management', desc: 'Strategic management of your employer-sponsored retirement accounts.' },
+                { icon: BarChart3, title: 'Traditional and Roth IRA Management', desc: 'Personalized IRA strategies to maximize your retirement savings.' },
+                { icon: Target, title: 'Estate Planning', desc: 'Comprehensive planning to protect and transfer your wealth.' },
+                { icon: Calendar, title: 'Free Retirement Projections', desc: 'Detailed projections to keep your retirement goals on track.' },
+                { icon: Video, title: 'Free Zoom-based Financial Planning', desc: 'Convenient virtual consultations from the comfort of your home.' },
+                { icon: ShieldCheck, title: 'Life Insurance Sales', desc: 'Protection strategies tailored to your family\'s needs.' },
+                { icon: BookOpen, title: 'Annuity Education and Sales', desc: 'Understanding and implementing annuities for guaranteed income.' },
+                { icon: TrendingUp, title: 'Personal Brokerage Account Management', desc: 'Active management of your investment portfolios.' }
+            ];
+
+            return React.createElement(
+                'section',
+                { className: 'py-20 bg-white' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'grid lg:grid-cols-2 gap-16 items-center' },
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: -20 },
+                                whileInView: { opacity: 1, x: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6 }
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'flex items-center gap-3 mb-4' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center' },
+                                    React.createElement(Users, { className: 'text-blue-600', size: 24 })
+                                ),
+                                React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'For Individuals')
+                            ),
+                            React.createElement('h2', { className: 'text-3xl md:text-4xl font-serif text-slate-900 mb-6' }, 'Personalized Financial Planning'),
+                            React.createElement('p', { className: 'text-slate-600 leading-relaxed mb-6' }, 'We offer a client-focused approach to financial planning and advisory services, designed for your convenience. Through virtual meetings via Zoom, we make the process easy and accessible, without requiring a minimum investment amount.'),
+                            React.createElement('p', { className: 'text-slate-600 leading-relaxed mb-8' }, 'We serve a wide range of clients, from mass affluent to high-net-worth individuals. We believe that financial education and advice are most effective when they are personalized and transparent, tailored to your unique needs and goals.'),
+                            React.createElement(
+                                'div',
+                                { className: 'bg-slate-50 rounded-lg p-6 aspect-video flex items-center justify-center' },
+                                React.createElement('img', {
+                                    src: 'images/v1-cards/clienteducation.png',
+                                    alt: 'Individual financial planning',
+                                    className: 'w-full h-full object-cover rounded-lg'
+                                })
+                            )
+                        ),
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: 20 },
+                                whileInView: { opacity: 1, x: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6, delay: 0.2 }
+                            },
+                            React.createElement('h3', { className: 'text-xl font-serif text-slate-900 mb-6' }, 'Our Services Include:'),
+                            React.createElement(
+                                'div',
+                                { className: 'grid gap-4' },
+                                services.map((service, index) =>
+                                    React.createElement(
+                                        motion.div,
+                                        {
+                                            key: index,
+                                            initial: { opacity: 0, y: 10 },
+                                            whileInView: { opacity: 1, y: 0 },
+                                            viewport: { once: true },
+                                            transition: { duration: 0.3, delay: index * 0.05 },
+                                            className: 'flex items-start gap-4 p-4 bg-slate-50 rounded-lg hover:bg-blue-50 transition-colors group'
+                                        },
+                                        React.createElement(
+                                            'div',
+                                            { className: 'w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors' },
+                                            React.createElement(service.icon, { className: 'text-slate-600 group-hover:text-blue-600 transition-colors', size: 18 })
+                                        ),
+                                        React.createElement(
+                                            'div',
+                                            null,
+                                            React.createElement('h4', { className: 'font-semibold text-slate-900 mb-1' }, service.title),
+                                            React.createElement('p', { className: 'text-slate-500 text-sm' }, service.desc)
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const ForEmployers = () => {
+            const topics = [
+                'Health Savings Account (HSA) Education',
+                'Free or For-Fee Financial Benefit Webinars',
+                'Debt Reduction Strategies',
+                'Tax Minimization Planning',
+                'Estate Planning Fundamentals',
+                '401(k) and Stock Option Optimization'
+            ];
+
+            return React.createElement(
+                'section',
+                { className: 'py-20 bg-slate-900 relative overflow-hidden' },
+                React.createElement('div', { className: 'absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -ml-48 -mb-48' }),
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6 relative z-10' },
+                    React.createElement(
+                        'div',
+                        { className: 'grid lg:grid-cols-2 gap-16 items-center' },
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: -20 },
+                                whileInView: { opacity: 1, x: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6 },
+                                className: 'order-2 lg:order-1'
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'bg-slate-800 rounded-lg p-8' },
+                                React.createElement('h3', { className: 'text-xl font-serif text-white mb-6' }, 'Key Areas We Cover:'),
+                                React.createElement(
+                                    'div',
+                                    { className: 'space-y-4' },
+                                    topics.map((topic, index) =>
+                                        React.createElement(
+                                            motion.div,
+                                            {
+                                                key: index,
+                                                initial: { opacity: 0, x: -10 },
+                                                whileInView: { opacity: 1, x: 0 },
+                                                viewport: { once: true },
+                                                transition: { duration: 0.3, delay: index * 0.1 },
+                                                className: 'flex items-center gap-3'
+                                            },
+                                            React.createElement(ChevronRight, { className: 'text-blue-400 flex-shrink-0', size: 18 }),
+                                            React.createElement('span', { className: 'text-slate-300' }, topic)
+                                        )
+                                    )
+                                ),
+                                React.createElement(
+                                    'div',
+                                    { className: 'mt-8 pt-6 border-t border-slate-700' },
+                                    React.createElement('p', { className: 'text-slate-400 text-sm italic' }, 'Our ultimate goal is to provide every employee with a free personalized financial plan, equipping them with the tools they need for long-term financial success.')
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: 20 },
+                                whileInView: { opacity: 1, x: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6, delay: 0.2 },
+                                className: 'order-1 lg:order-2'
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'flex items-center gap-3 mb-4' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center' },
+                                    React.createElement(Briefcase, { className: 'text-white', size: 24 })
+                                ),
+                                React.createElement('span', { className: 'text-blue-400 font-semibold tracking-wider text-sm uppercase' }, 'For Employers')
+                            ),
+                            React.createElement('h2', { className: 'text-3xl md:text-4xl font-serif text-white mb-6' }, 'Comprehensive Financial Education for Employee Wellbeing'),
+                            React.createElement('p', { className: 'text-slate-300 leading-relaxed mb-6' }, 'We\'ve developed a comprehensive financial education curriculum aimed at enhancing the financial and mental wellbeing of employees. Through a regular cadence of financial education webinars, we cover topics beyond standard benefits like 401(k)s, HSAs, and stock options.'),
+                            React.createElement('p', { className: 'text-slate-300 leading-relaxed mb-8' }, 'These webinars provide employees with the personalized guidance they need to tackle their unique financial challenges, empowering them to make informed and confident decisions.'),
+                            React.createElement(
+                                'div',
+                                { className: 'bg-slate-800 rounded-lg overflow-hidden aspect-video' },
+                                React.createElement('img', {
+                                    src: 'images/v1-cards/teamcollaboration.png',
+                                    alt: 'Team collaboration',
+                                    className: 'w-full h-full object-cover opacity-80'
+                                })
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const ForBenefitPlatforms = () => {
+            return React.createElement(
+                'section',
+                { className: 'py-20 bg-slate-50' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'max-w-4xl mx-auto text-center' },
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, y: 20 },
+                                whileInView: { opacity: 1, y: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6 }
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'flex items-center justify-center gap-3 mb-4' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center' },
+                                    React.createElement(Globe, { className: 'text-blue-600', size: 24 })
+                                )
+                            ),
+                            React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'For Benefit Platforms'),
+                            React.createElement('h2', { className: 'text-3xl md:text-4xl font-serif text-slate-900 mt-4 mb-6' }, 'Partnering for Employee Financial Education'),
+                            React.createElement('p', { className: 'text-slate-600 leading-relaxed mb-8' }, 'We partner with third-party administrators and retirement platforms (such as 401(k) and 403(b) plans) to deliver comprehensive financial education webinars tailored to support the employee populations of their employer partners.'),
+                            React.createElement('p', { className: 'text-slate-600 leading-relaxed mb-10' }, 'Our extensive webinar library is customized based on the specific observations and insights from employers regarding their employees\' financial wellbeing needs and available benefits. This ensures that our educational offerings are relevant and impactful for each unique workforce.')
+                        ),
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, y: 20 },
+                                whileInView: { opacity: 1, y: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6, delay: 0.2 },
+                                className: 'bg-white p-8 rounded-lg shadow-sm border border-slate-100'
+                            },
+                            React.createElement('h3', { className: 'text-xl font-serif text-slate-900 mb-6' }, 'Key Services We Offer:'),
+                            React.createElement(
+                                'div',
+                                { className: 'flex flex-wrap justify-center gap-4' },
+                                ['401(k) Plan Management', '3(38) Advisor Services', 'Custom Webinar Development', 'Employee Engagement Programs'].map((service, index) =>
+                                    React.createElement(
+                                        'div',
+                                        { key: index, className: 'flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-full' },
+                                        React.createElement(ChevronRight, { className: 'text-blue-600', size: 16 }),
+                                        React.createElement('span', { className: 'text-slate-700 text-sm font-medium' }, service)
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const FreeFinancialPlan = () => {
+            const pitfalls = [
+                { icon: Target, title: 'Incomplete Planning', desc: 'Not having a comprehensive financial plan covering all aspects of your finances.' },
+                { icon: Calendar, title: 'Outdated Strategies', desc: 'Not revisiting and updating your plan regularly (ideally every 12 to 18 months).' }
+            ];
+
+            return React.createElement(
+                'section',
+                { className: 'py-20 bg-white' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'grid lg:grid-cols-2 gap-16 items-center' },
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: -20 },
+                                whileInView: { opacity: 1, x: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6 }
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'flex items-center gap-3 mb-4' },
+                                React.createElement(
+                                    'div',
+                                    { className: 'w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center' },
+                                    React.createElement(BookOpen, { className: 'text-blue-600', size: 24 })
+                                ),
+                                React.createElement('span', { className: 'text-blue-600 font-semibold tracking-wider text-sm uppercase' }, 'Free Financial Plan')
+                            ),
+                            React.createElement('h2', { className: 'text-3xl md:text-4xl font-serif text-slate-900 mb-6' }, 'Avoiding Common Financial Pitfalls'),
+                            React.createElement('p', { className: 'text-slate-600 leading-relaxed mb-6' }, 'Many people unknowingly make critical mistakes when it comes to key financial areas such as investing, savings, taxes, debt, insurance, and estate planning (wills and trusts). The two most common mistakes are:'),
+                            React.createElement(
+                                'div',
+                                { className: 'space-y-4 mb-8' },
+                                pitfalls.map((pitfall, index) =>
+                                    React.createElement(
+                                        'div',
+                                        { key: index, className: 'flex items-start gap-4 p-4 bg-red-50 rounded-lg border border-red-100' },
+                                        React.createElement(
+                                            'div',
+                                            { className: 'w-10 h-10 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0' },
+                                            React.createElement(pitfall.icon, { className: 'text-red-600', size: 18 })
+                                        ),
+                                        React.createElement(
+                                            'div',
+                                            null,
+                                            React.createElement('h4', { className: 'font-semibold text-slate-900 mb-1' }, pitfall.title),
+                                            React.createElement('p', { className: 'text-slate-600 text-sm' }, pitfall.desc)
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            motion.div,
+                            {
+                                initial: { opacity: 0, x: 20 },
+                                whileInView: { opacity: 1, x: 0 },
+                                viewport: { once: true },
+                                transition: { duration: 0.6, delay: 0.2 }
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'bg-slate-900 p-8 rounded-lg' },
+                                React.createElement('h3', { className: 'text-2xl font-serif text-white mb-4' }, 'Our Commitment to You'),
+                                React.createElement('p', { className: 'text-slate-300 leading-relaxed mb-6' }, 'At Wealth Foundations, we offer a free financial plan to help you see how all the different aspects of your financial life come together. Our goal is to give you a clear understanding of where you stand financially and to help you determine whether your current plan is on track or if it might need some adjustments.'),
+                                React.createElement('p', { className: 'text-slate-300 leading-relaxed mb-8' }, 'Whether or not you decide to work with us, we believe in keeping your financial plan up-to-date. That is why we offer free updates every 12 to 18 months to ensure you always have the support and knowledge you need to stay on the right path toward your financial future.'),
+                                React.createElement(
+                                    'a',
+                                    {
+                                        href: 'index.html#contact',
+                                        className: 'inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-blue-900/20 group'
+                                    },
+                                    'Get Your Free Financial Plan',
+                                    React.createElement(ArrowRight, { className: 'w-4 h-4 group-hover:translate-x-1 transition-transform' })
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        const CallToAction = () => {
+            return React.createElement(
+                'section',
+                { className: 'py-20 bg-slate-900' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6 text-center' },
+                    React.createElement(
+                        motion.div,
+                        {
+                            initial: { opacity: 0, y: 20 },
+                            whileInView: { opacity: 1, y: 0 },
+                            viewport: { once: true },
+                            transition: { duration: 0.6 }
+                        },
+                        React.createElement('h2', { className: 'text-3xl md:text-4xl font-serif text-white mb-6' }, 'Ready to Start Your Financial Journey?'),
+                        React.createElement('p', { className: 'text-slate-300 max-w-2xl mx-auto mb-8' }, 'Schedule a virtual meeting with one of our advisors and take the first step toward building your financial future. No minimums, no pressure—just personalized guidance.'),
+                        React.createElement(
+                            'a',
+                            {
+                                href: 'index.html#contact',
+                                className: 'inline-flex items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-sm transition-all transform hover:-translate-y-0.5 shadow-lg shadow-blue-900/20 group'
+                            },
+                            'Schedule a Virtual Meeting',
+                            React.createElement(ArrowRight, { className: 'w-4 h-4 group-hover:translate-x-1 transition-transform' })
+                        )
+                    )
+                )
+            );
+        };
+
+        const Footer = () => {
+            return React.createElement(
+                'footer',
+                { className: 'bg-slate-950 text-slate-400 py-12 border-t border-slate-900' },
+                React.createElement(
+                    'div',
+                    { className: 'container mx-auto px-6' },
+                    React.createElement(
+                        'div',
+                        { className: 'grid md:grid-cols-4 gap-8 mb-8' },
+                        React.createElement(
+                            'div',
+                            { className: 'col-span-1 md:col-span-2' },
+                            React.createElement(
+                                'a',
+                                { href: 'index.html', className: 'text-white font-serif text-xl mb-4 inline-block' },
+                                'WEALTH ',
+                                React.createElement('span', { className: 'text-blue-600' }, 'FOUNDATIONS')
+                            ),
+                            React.createElement('p', { className: 'text-sm leading-relaxed max-w-sm' }, 'A virtual advisory firm building the structure for your financial future. Through active management and holistic planning—accessible from anywhere—we ensure your legacy stands the test of time.')
+                        ),
+                        React.createElement(
+                            'div',
+                            null,
+                            React.createElement('h5', { className: 'text-white font-medium mb-4' }, 'Services'),
+                            React.createElement(
+                                'ul',
+                                { className: 'space-y-2 text-sm' },
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Financial Planning')),
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Investment Management')),
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Estate Planning')),
+                                React.createElement('li', null, React.createElement('a', { href: '#', className: 'hover:text-blue-500 transition-colors' }, 'Tax Analysis'))
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            null,
+                            React.createElement('h5', { className: 'text-white font-medium mb-4' }, 'Contact'),
+                            React.createElement(
+                                'ul',
+                                { className: 'space-y-2 text-sm' },
+                                React.createElement('li', null, 'Phone: (555) 123-4567'),
+                                React.createElement('li', null, 'Email: info@wealthfoundations.com'),
+                                React.createElement('li', null, 'Salt Lake Valley, Utah')
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs' },
+                        React.createElement('p', null, '© ', new Date().getFullYear(), ' Wealth Foundations Partners. All rights reserved.'),
+                        React.createElement(
+                            'div',
+                            { className: 'mt-4 md:mt-0 flex gap-4' },
+                            React.createElement('a', { href: '#', className: 'hover:text-white transition-colors' }, 'Privacy Policy'),
+                            React.createElement('a', { href: '#', className: 'hover:text-white transition-colors' }, 'Terms of Service')
+                        )
+                    )
+                )
+            );
+        };
+
+        const App = () => {
+            return React.createElement(
+                'div',
+                { className: 'min-h-screen bg-white font-sans text-slate-900 selection:bg-blue-100' },
+                React.createElement(Navbar),
+                React.createElement(ServicesHero),
+                React.createElement(ForIndividuals),
+                React.createElement(ForEmployers),
+                React.createElement(ForBenefitPlatforms),
+                React.createElement(FreeFinancialPlan),
+                React.createElement(CallToAction),
+                React.createElement(Footer)
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
+</body>
+</html>
