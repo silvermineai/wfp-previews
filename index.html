@@ -87,22 +87,20 @@
 
             return React.createElement(
                 'nav',
-                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-900/95 backdrop-blur-md shadow-lg py-4' : 'bg-transparent py-6'}` },
+                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg py-4' : 'bg-transparent py-6'}` },
                 React.createElement(
                     'div',
                     { className: 'container mx-auto px-6 flex justify-between items-center' },
                     React.createElement(
                         'a',
-                        { href: 'index.html', className: 'text-white font-serif text-2xl tracking-wide font-semibold' },
-                        'WEALTH ',
-                        React.createElement('span', { className: 'text-blue-400' }, 'FOUNDATIONS'),
-                        ' PARTNERS'
+                        { href: 'index.html', className: 'flex items-center' },
+                        React.createElement('img', { src: 'images/WFPlogo.png', alt: 'Wealth Foundations Partners', className: 'h-12' })
                     ),
                     React.createElement(
                         'div',
                         { className: 'hidden md:flex items-center space-x-8' },
-                        React.createElement('a', { href: 'index.html', className: 'text-white text-sm uppercase tracking-widest transition-colors border-b border-blue-400 pb-1' }, 'Home'),
-                        React.createElement('a', { href: 'services.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Services'),
+                        React.createElement('a', { href: 'index.html', className: `${isScrolled ? 'text-blue-900' : 'text-white'} text-sm uppercase tracking-widest transition-colors border-b border-blue-400 pb-1` }, 'Home'),
+                        React.createElement('a', { href: 'services.html', className: `${isScrolled ? 'text-blue-900 hover:text-blue-700' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors` }, 'Services'),
                         // About Dropdown
                         React.createElement(
                             'div',
@@ -113,7 +111,7 @@
                             },
                             React.createElement(
                                 'button',
-                                { className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors flex items-center gap-1' },
+                                { className: `${isScrolled ? 'text-blue-900 hover:text-blue-700' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors flex items-center gap-1` },
                                 'About',
                                 React.createElement(ChevronDown, { size: 14 })
                             ),
@@ -138,7 +136,7 @@
                             },
                             React.createElement(
                                 'button',
-                                { className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors flex items-center gap-1' },
+                                { className: `${isScrolled ? 'text-blue-900 hover:text-blue-700' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors flex items-center gap-1` },
                                 'Resources',
                                 React.createElement(ChevronDown, { size: 14 })
                             ),
@@ -152,7 +150,7 @@
                                 )
                             )
                         ),
-                        React.createElement('a', { href: 'contact.html', className: 'text-slate-200 hover:text-white text-sm uppercase tracking-widest transition-colors' }, 'Contact'),
+                        React.createElement('a', { href: 'contact.html', className: `${isScrolled ? 'text-blue-900 hover:text-blue-700' : 'text-slate-200 hover:text-white'} text-sm uppercase tracking-widest transition-colors` }, 'Contact'),
                         React.createElement(
                             'button',
                             {
@@ -164,7 +162,7 @@
                     ),
                     React.createElement(
                         'button',
-                        { className: 'md:hidden text-white', onClick: () => setMobileMenuOpen(!mobileMenuOpen) },
+                        { className: `md:hidden ${isScrolled ? 'text-blue-900' : 'text-white'}`, onClick: () => setMobileMenuOpen(!mobileMenuOpen) },
                         mobileMenuOpen ? React.createElement(X, { size: 28 }) : React.createElement(Menu, { size: 28 })
                     )
                 ),
@@ -216,7 +214,7 @@
                     React.createElement('div', { className: 'absolute inset-0 bg-slate-900/60 z-10' }),
                     // Fallback image that fades in when video ends
                     React.createElement('img', {
-                        src: 'images/headers/hero-fallback.png',
+                        src: 'images/headers/hero-fallback.PNG',
                         alt: 'Wealth Foundations',
                         className: `absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoEnded ? 'opacity-100' : 'opacity-0'}`,
                         style: { zIndex: 5 }
@@ -325,7 +323,7 @@
                     icon: Briefcase,
                     title: "Decades of Experience",
                     description: "Leverage a team with deep industry knowledge. We've navigated complex market cycles, ensuring your wealth is managed with seasoned wisdom.",
-                    image: "images/v1-cards/experience.png"
+                    image: "images/disciplines/decadesofexperience.jpg"
                 },
                 {
                     icon: Users,
@@ -343,19 +341,19 @@
                     icon: TrendingUp,
                     title: "Active Tactical Management",
                     description: "Our strategies don't sit still. We proactively reposition your portfolio based on market sentiment, constantly adjusting to seize opportunities and mitigate risk.",
-                    image: "images/v1-cards/activetactical.png"
+                    image: "images/disciplines/activetacticalmanagement.jpg"
                 },
                 {
                     icon: BookOpen,
                     title: "Client Education",
                     description: "We believe in empowering you. We go beyond management to educate our clients on financial literacy, ensuring you understand the 'why' behind every move.",
-                    image: "images/v1-cards/clienteducation.png"
+                    image: "images/disciplines/clienteducation.jpg"
                 },
                 {
                     icon: PieChart,
                     title: "Holistic Planning",
                     description: "We handle everything. From retirement and investment management to tax analysis and estate planning, our comprehensive approach leaves no stone unturned.",
-                    image: "images/v1-cards/holisticplanning.png"
+                    image: "images/disciplines/holisticplanning.png"
                 }
             ];
 
@@ -735,9 +733,8 @@
                             { className: 'col-span-1 md:col-span-2' },
                             React.createElement(
                                 'a',
-                                { href: 'index.html', className: 'text-white font-serif text-xl mb-4 inline-block' },
-                                'WEALTH ',
-                                React.createElement('span', { className: 'text-blue-600' }, 'FOUNDATIONS')
+                                { href: 'index.html', className: 'inline-block mb-4' },
+                                React.createElement('img', { src: 'images/WFPlogo.png', alt: 'Wealth Foundations Partners', className: 'h-10' })
                             ),
                             React.createElement('p', { className: 'text-sm leading-relaxed max-w-sm' }, 'A virtual advisory firm building the structure for your financial future. Through active management and holistic planning—accessible from anywhere—we ensure your legacy stands the test of time.')
                         ),
