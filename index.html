@@ -87,14 +87,14 @@
 
             return React.createElement(
                 'nav',
-                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg py-4' : 'bg-transparent py-6'}` },
+                { className: `fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-lg py-4' : 'bg-transparent py-6'}` },
                 React.createElement(
                     'div',
                     { className: 'container mx-auto px-6 flex justify-between items-center' },
                     React.createElement(
                         'a',
                         { href: 'index.html', className: 'flex items-center' },
-                        React.createElement('img', { src: 'images/WFPlogo.png', alt: 'Wealth Foundations Partners', className: 'h-12' })
+                        React.createElement('img', { src: 'images/4.png', alt: 'Wealth Foundations Partners', className: 'h-12' })
                     ),
                     React.createElement(
                         'div',
@@ -221,7 +221,7 @@
                     }),
                     React.createElement('video', {
                         ref: videoRef,
-                        src: 'videos/MWF Header.mp4',
+                        src: 'videos/MWF Header (2).mp4',
                         className: `absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto object-cover pointer-events-none transition-opacity duration-1000 ${videoEnded ? 'opacity-0' : 'opacity-100'}`,
                         style: { width: 'max(100%, 177.78vh)', height: 'max(100%, 56.25vw)' },
                         autoPlay: true,
@@ -734,7 +734,7 @@
                             React.createElement(
                                 'a',
                                 { href: 'index.html', className: 'inline-block mb-4' },
-                                React.createElement('img', { src: 'images/WFPlogo.png', alt: 'Wealth Foundations Partners', className: 'h-10' })
+                                React.createElement('img', { src: 'images/4.png', alt: 'Wealth Foundations Partners', className: 'h-10' })
                             ),
                             React.createElement('p', { className: 'text-sm leading-relaxed max-w-sm' }, 'A virtual advisory firm building the structure for your financial future. Through active management and holistic planning—accessible from anywhere—we ensure your legacy stands the test of time.')
                         ),
